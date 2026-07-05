@@ -24,8 +24,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
-            "outputPath": "docs"
+            "styles": ["src/styles.css"]
           },
           "configurations": {
             "production": {
