@@ -1,632 +1,785 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Circuit Buddy — DIY Circuit Boards</title>
+    <meta
+      name="description"
+      content="Circuit Buddy makes beginner-friendly DIY circuit board kits. Learn electronics by soldering real PCBs."
+    />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Astable Multivibrator — Living Blueprint</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0f2d52;
-  --bg-deep:#0a2140;
-  --panel:#12365f;
-  --panel-deep:#0d2a4c;
-  --grid:#1b4574;
-  --line:#d8e9fa;
-  --ink:#eaf3fd;
-  --muted:#8fb3d9;
-  --copper:#e8a25d;
-  --cyan:#5bd1ff;
-  --led1:#ff5d4d;
-  --led2:#ffc94d;
-  --ok:#7be0a3;
-  --danger:#ff7a6e;
-  --radius:10px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:
-    radial-gradient(1200px 600px at 70% -10%, #17416f 0%, transparent 60%),
-    var(--bg);
-  color:var(--ink);
-  font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
-  font-size:15px;
-  line-height:1.55;
-  min-height:100vh;
-}
-.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
-/* ---------- header ---------- */
-header{border-bottom:1px solid var(--grid);padding-bottom:20px;margin-bottom:24px}
-.eyebrow{color:var(--copper);letter-spacing:.28em;font-size:11px;text-transform:uppercase}
-h1{
-  font-family:"Chakra Petch",sans-serif;font-weight:700;
-  font-size:clamp(28px,4.5vw,46px);letter-spacing:.02em;line-height:1.1;
-  margin:8px 0 6px;text-transform:uppercase;
-}
-h1 .thin{color:var(--cyan);}
-.sub{color:var(--muted);max-width:70ch}
-/* ---------- layout ---------- */
-.stage{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);gap:18px;align-items:start}
-@media (max-width:980px){.stage{grid-template-columns:1fr}}
-.card{
-  background:linear-gradient(180deg,var(--panel) 0%,var(--panel-deep) 100%);
-  border:1px solid var(--grid);border-radius:var(--radius);
-  padding:16px 18px;
-}
-.card h2{
-  font-family:"Chakra Petch",sans-serif;font-size:13px;font-weight:600;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
-  margin-bottom:10px;
-}
-/* ---------- controls ---------- */
-.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:14px}
-button{
-  font-family:"Chakra Petch",sans-serif;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;font-size:13px;
-  background:var(--panel);border:1px solid var(--cyan);color:var(--cyan);
-  padding:9px 18px;border-radius:6px;cursor:pointer;transition:background .15s,color .15s;
-}
-button:hover{background:var(--cyan);color:var(--bg-deep)}
-button:focus-visible,input:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
-button.secondary{border-color:var(--muted);color:var(--muted)}
-button.secondary:hover{background:var(--muted);color:var(--bg-deep)}
-.speedbox{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
-input[type=range]{accent-color:var(--copper);width:150px}
-#speedVal{color:var(--copper);min-width:4ch;font-weight:600}
-/* ---------- schematic ---------- */
-.schematic-card{padding:10px}
-svg{width:100%;height:auto;display:block}
-.rail{stroke:var(--line);stroke-width:2.5}
-.wire{stroke:var(--line);stroke-width:2;fill:none}
-.wire.thick{stroke-width:3.5}
-.sym{stroke:var(--line);stroke-width:2;fill:none}
-.dot{fill:var(--line)}
-.lbl{fill:var(--muted);font-size:13px;font-family:"IBM Plex Mono",monospace}
-.lbl.big{fill:var(--ink);font-size:15px;font-weight:600}
-.lbl.val{fill:var(--copper)}
-.tcase{fill:rgba(91,209,255,.04);stroke:var(--line);stroke-width:2;transition:fill .25s}
-.tcase.on{fill:rgba(123,224,163,.16)}
-.state-badge{font-family:"Chakra Petch",sans-serif;font-weight:700;font-size:13px;letter-spacing:.15em}
-.vread{font-weight:600;font-size:14px}
-/* flowing current */
-.flow{fill:none;stroke-linecap:round;opacity:0;transition:opacity .35s}
-.flow.main{stroke-width:4;stroke-dasharray:7 11;filter:drop-shadow(0 0 4px currentColor)}
-.flow.charge{stroke-width:2.5;stroke-dasharray:4 10}
-.flow.base{stroke-width:1.6;stroke-dasharray:3 9;opacity:0}
-.flow.visible{opacity:1}
-.flow.base.visible{opacity:.75}
-@keyframes marchA{to{stroke-dashoffset:-180}}
-.flow{animation:marchA 1.2s linear infinite}
-/* LED glow */
-.glow{opacity:0;transition:opacity .3s}
-.hit{fill:transparent;cursor:pointer}
-.hit:hover + .hl, .part:hover .sym{filter:brightness(1.5)}
-/* capacitor gauge */
-.gauge-bg{fill:var(--bg-deep);stroke:var(--grid)}
-.gauge-fill{fill:var(--cyan)}
-.plus{fill:var(--ok);font-weight:700;font-size:15px}
-.minus{fill:var(--danger);font-weight:700;font-size:17px}
-/* ---------- side panel ---------- */
-.phase-title{
-  font-family:"Chakra Petch",sans-serif;font-size:19px;font-weight:700;
-  letter-spacing:.05em;margin-bottom:6px;
-}
-.phase-title .p1{color:var(--led1)} .phase-title .p2{color:var(--led2)}
-.progress{height:8px;background:var(--bg-deep);border:1px solid var(--grid);border-radius:6px;overflow:hidden;margin:10px 0 12px}
-.progress > div{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--copper))}
-#narration{min-height:7.5em;color:var(--ink)}
-.meters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.meter{background:var(--bg-deep);border:1px solid var(--grid);border-radius:8px;padding:10px 12px}
-.meter .name{font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
-.meter .num{font-family:"Chakra Petch",sans-serif;font-size:22px;font-weight:700}
-.meter .num.q1{color:var(--cyan)} .meter .num.q2{color:var(--copper)}
-.meter .bar{height:5px;background:#0a1c36;border-radius:4px;margin-top:6px;position:relative;overflow:hidden}
-.meter .bar > i{position:absolute;top:0;bottom:0;left:50%;background:currentColor;display:block}
-.threshold-note{font-size:12px;color:var(--muted);margin-top:8px}
-.threshold-note b{color:var(--ok)}
-#inspector{margin-top:18px}
-#inspTitle{color:var(--copper);font-family:"Chakra Petch",sans-serif;font-size:16px;font-weight:600;letter-spacing:.04em;margin-bottom:4px}
-#inspBody{color:var(--muted);font-size:13.5px}
-#inspBody b{color:var(--ink)}
-/* ---------- scope ---------- */
-.scope-card{margin-top:18px}
-.legend{display:flex;gap:22px;font-size:12.5px;color:var(--muted);margin-bottom:8px;flex-wrap:wrap}
-.chip{display:inline-block;width:22px;height:3px;border-radius:2px;vertical-align:middle;margin-right:7px}
-canvas{width:100%;height:190px;display:block;background:var(--bg-deep);border:1px solid var(--grid);border-radius:8px}
-/* ---------- steps prose ---------- */
-.steps{margin-top:18px}
-.steps p{color:var(--muted);margin-bottom:10px;max-width:88ch}
-.steps p b{color:var(--ink)}
-.steps p .k{color:var(--copper);font-family:"Chakra Petch",sans-serif;font-weight:600;letter-spacing:.1em;margin-right:8px}
-/* ---------- title block signature ---------- */
-.titleblock{
-  margin:34px 0 0 auto;width:min(420px,100%);
-  border:1.5px solid var(--line);font-size:11.5px;color:var(--muted);
-  display:grid;grid-template-columns:1fr 1fr;
-}
-.titleblock div{padding:7px 10px;border-top:1px solid var(--grid)}
-.titleblock div:nth-child(-n+2){border-top:none}
-.titleblock div:nth-child(odd){border-right:1px solid var(--grid)}
-.titleblock span{display:block;font-size:9.5px;letter-spacing:.22em;color:var(--muted);opacity:.7}
-.titleblock b{color:var(--ink);font-weight:600}
-@media (prefers-reduced-motion: reduce){
-  .flow{animation:none}
-}
-</style>
-</head>
-<body>
-<div class="wrap">
+    <!-- Fonts: Baloo 2 (bubbly display, matches the logo), Nunito (body), Space Mono (PCB labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-<header>
-  <div class="eyebrow">Sheet 01 · Schematic in motion</div>
-  <h1>Astable Multivibrator <span class="thin">/ LED Blinker</span></h1>
-  <p class="sub">Two transistors take turns switching each other off — forever. Press play, slow it
-  down, and tap any component on the blueprint to learn its job.</p>
-</header>
+    <!-- Tailwind CSS (Play CDN — fine for GitHub Pages) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              teal: {
+                deep: "#0B5D50", // darkest panels / footer
+                brand: "#0F7D6C", // main background (from package)
+                trace: "#2E9A87", // circuit trace lines
+                light: "#54B3A0", // hover / soft accents
+              },
+              buddy: {
+                yellow: "#FFD60A", // logo & badge yellow
+                amber: "#F5C400", // pressed / darker yellow
+              },
+              cream: "#FFF9E8",
+            },
+            fontFamily: {
+              display: ['"Baloo 2"', "cursive"],
+              body: ["Nunito", "sans-serif"],
+              mono: ['"Space Mono"', "monospace"],
+            },
+            borderRadius: {
+              blob: "1.75rem",
+            },
+          },
+        },
+      };
+    </script>
 
-<div class="controls">
-  <button id="playBtn">Pause</button>
-  <button id="resetBtn" class="secondary">Reset</button>
-  <div class="speedbox">
-    <label for="speed">Speed</label>
-    <input type="range" id="speed" min="0.1" max="2" step="0.05" value="0.6">
-    <span id="speedVal">0.6×</span>
-  </div>
-</div>
+    <style>
+      /* Circuit-trace background pattern, drawn to echo the package artwork */
+      .circuit-bg {
+        background-color: #0f7d6c;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%232E9A87' stroke-width='3' opacity='0.55'%3E%3Cpath d='M20 20h60v40h40'/%3E%3Cpath d='M200 30v50h-50'/%3E%3Cpath d='M30 200v-60h50'/%3E%3Cpath d='M120 200v-40h60'/%3E%3Cpath d='M180 130h30'/%3E%3Cpath d='M10 120h40v30'/%3E%3C/g%3E%3Cg fill='%232E9A87' opacity='0.55'%3E%3Ccircle cx='20' cy='20' r='5'/%3E%3Ccircle cx='120' cy='60' r='5'/%3E%3Ccircle cx='150' cy='80' r='5'/%3E%3Ccircle cx='80' cy='140' r='5'/%3E%3Ccircle cx='180' cy='160' r='5'/%3E%3Ccircle cx='50' cy='150' r='5'/%3E%3Crect x='95' y='95' width='26' height='26' rx='3' opacity='0.45'/%3E%3C/g%3E%3C/svg%3E");
+      }
+      .circuit-bg-dark {
+        background-color: #0b5d50;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23177263' stroke-width='3' opacity='0.6'%3E%3Cpath d='M20 20h60v40h40'/%3E%3Cpath d='M200 30v50h-50'/%3E%3Cpath d='M30 200v-60h50'/%3E%3Cpath d='M120 200v-40h60'/%3E%3C/g%3E%3Cg fill='%23177263' opacity='0.6'%3E%3Ccircle cx='20' cy='20' r='5'/%3E%3Ccircle cx='120' cy='60' r='5'/%3E%3Ccircle cx='180' cy='160' r='5'/%3E%3C/g%3E%3C/svg%3E");
+      }
+      /* Bubbly logo text with dark outline, like the package logo */
+      .logo-text {
+        -webkit-text-stroke: 0;
+        text-shadow:
+          0 3px 0 #0b5d50,
+          0 4px 6px rgba(0, 0, 0, 0.25);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
 
-<div class="stage">
+  <body class="font-body text-white circuit-bg antialiased">
+    <!-- ============ NAV ============ -->
+    <header
+      class="sticky top-0 z-50 bg-teal-deep/95 backdrop-blur border-b-4 border-buddy-yellow"
+    >
+      <nav
+        class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3"
+      >
+        <a
+          href="#top"
+          class="flex items-center gap-2"
+          aria-label="Circuit Buddy home"
+        >
+          <!-- Robot mascot (mimics the package mascot) -->
+          <svg viewBox="0 0 64 64" class="w-9 h-9" aria-hidden="true">
+            <line
+              x1="32"
+              y1="6"
+              x2="32"
+              y2="14"
+              stroke="#FFD60A"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <circle cx="32" cy="6" r="4" fill="#FFD60A" />
+            <rect x="8" y="14" width="48" height="38" rx="12" fill="#FFD60A" />
+            <rect x="14" y="22" width="36" height="22" rx="8" fill="#0B5D50" />
+            <circle cx="25" cy="31" r="4" fill="#FFD60A" />
+            <circle cx="39" cy="31" r="4" fill="#FFD60A" />
+            <path
+              d="M26 38 q6 5 12 0"
+              stroke="#FFD60A"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span
+            class="font-display font-800 text-buddy-yellow text-xl leading-none logo-text"
+            >Circuit Buddy</span
+          >
+        </a>
 
-  <!-- ==================== SCHEMATIC ==================== -->
-  <div class="card schematic-card">
-    <svg viewBox="0 0 920 640" role="img" aria-label="Animated schematic of a two-transistor astable multivibrator with two LEDs">
-      <defs>
-        <pattern id="bp" width="26" height="26" patternUnits="userSpaceOnUse">
-          <path d="M26 0H0V26" fill="none" stroke="#16406c" stroke-width="1"/>
-        </pattern>
-        <radialGradient id="g1"><stop offset="0%" stop-color="#ff5d4d" stop-opacity=".85"/><stop offset="100%" stop-color="#ff5d4d" stop-opacity="0"/></radialGradient>
-        <radialGradient id="g2"><stop offset="0%" stop-color="#ffc94d" stop-opacity=".85"/><stop offset="100%" stop-color="#ffc94d" stop-opacity="0"/></radialGradient>
-      </defs>
-      <rect x="0" y="0" width="920" height="640" fill="url(#bp)" opacity=".5"/>
+        <!-- Mobile menu button -->
+        <button
+          id="menuBtn"
+          class="md:hidden p-2 rounded-lg text-buddy-yellow focus:outline-none focus:ring-2 focus:ring-buddy-yellow"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
 
-      <!-- ======= animated current paths (under wires) ======= -->
-      <g id="flowQ1">
-        <path class="flow main"   style="color:#ff8d80;stroke:#ff8d80" d="M110,290 L110,70 L200,70 L200,438 M200,498 L200,560 L110,560 L110,344"/>
-        <path class="flow charge" style="color:#5bd1ff;stroke:#5bd1ff" d="M110,290 L110,70 L540,70 L540,320 L390,320 A10 10 0 0 0 370,320 L200,320 L200,438 M200,498 L200,560 L110,560 L110,344"/>
-        <path class="flow base"   style="color:#7be0a3;stroke:#7be0a3" d="M110,290 L110,70 L380,70 L380,468 L230,468 M200,498 L200,560 L110,560 L110,344"/>
-      </g>
-      <g id="flowQ2">
-        <path class="flow main"   style="color:#ffd98a;stroke:#ffd98a" d="M110,290 L110,70 L740,70 L740,438 M740,498 L740,560 L110,560 L110,344"/>
-        <path class="flow charge" style="color:#5bd1ff;stroke:#5bd1ff" d="M110,290 L110,70 L380,70 L380,258 L530,258 A10 10 0 0 1 550,258 L740,258 L740,438 M740,498 L740,560 L110,560 L110,344"/>
-        <path class="flow base"   style="color:#7be0a3;stroke:#7be0a3" d="M110,290 L110,70 L540,70 L540,468 L710,468 M740,498 L740,560 L110,560 L110,344"/>
-      </g>
+        <!-- Desktop links -->
+        <ul class="hidden md:flex items-center gap-6 font-bold">
+          <li>
+            <a href="#about" class="hover:text-buddy-yellow transition-colors"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#circuits"
+              class="hover:text-buddy-yellow transition-colors"
+              >Circuits</a
+            >
+          </li>
+          <li>
+            <a href="#contact" class="hover:text-buddy-yellow transition-colors"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a
+              href="#circuits"
+              class="bg-buddy-yellow text-teal-deep px-4 py-2 rounded-full font-display font-bold hover:bg-buddy-amber transition-colors"
+            >
+              Shop kits
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-      <!-- ======= rails ======= -->
-      <line class="rail" x1="110" y1="70"  x2="810" y2="70"/>
-      <line class="rail" x1="110" y1="560" x2="810" y2="560"/>
-      <text class="lbl val" x="820" y="75">+6 V</text>
-      <text class="lbl val" x="820" y="565">0 V</text>
+      <!-- Mobile dropdown -->
+      <ul
+        id="mobileMenu"
+        class="hidden md:hidden flex-col bg-teal-deep border-t border-teal-trace/40 px-4 pb-4 font-bold text-lg"
+      >
+        <li>
+          <a href="#about" class="block py-3 border-b border-teal-trace/30"
+            >About</a
+          >
+        </li>
+        <li>
+          <a href="#circuits" class="block py-3 border-b border-teal-trace/30"
+            >Circuits</a
+          >
+        </li>
+        <li><a href="#contact" class="block py-3">Contact</a></li>
+      </ul>
+    </header>
 
-      <!-- ======= battery ======= -->
-      <g class="part" id="p-battery">
-        <line class="wire" x1="110" y1="70" x2="110" y2="293"/>
-        <line class="sym" x1="90"  y1="293" x2="130" y2="293"/>
-        <line class="sym" x1="100" y1="308" x2="120" y2="308" stroke-width="4"/>
-        <line class="sym" x1="90"  y1="326" x2="130" y2="326"/>
-        <line class="sym" x1="100" y1="341" x2="120" y2="341" stroke-width="4"/>
-        <line class="wire" x1="110" y1="341" x2="110" y2="560"/>
-        <text class="lbl" x="60" y="298" fill="#7be0a3">+</text>
-        <text class="lbl" x="60" y="348">−</text>
-        <text class="lbl" x="34" y="322">6 V</text>
-        <rect class="hit" data-part="battery" x="30" y="280" width="110" height="76"><title>Battery</title></rect>
-      </g>
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section
+        class="max-w-6xl mx-auto px-4 pt-14 pb-16 md:pt-24 md:pb-24 text-center"
+      >
+        <!-- Big mascot -->
+        <svg
+          viewBox="0 0 64 64"
+          class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 drop-shadow-lg"
+          aria-hidden="true"
+        >
+          <line
+            x1="32"
+            y1="6"
+            x2="32"
+            y2="14"
+            stroke="#FFD60A"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+          <circle cx="32" cy="6" r="4" fill="#FFD60A" />
+          <rect x="8" y="14" width="48" height="38" rx="12" fill="#FFD60A" />
+          <rect x="14" y="22" width="36" height="22" rx="8" fill="#0B5D50" />
+          <circle cx="25" cy="31" r="4" fill="#FFD60A" />
+          <circle cx="39" cy="31" r="4" fill="#FFD60A" />
+          <path
+            d="M26 38 q6 5 12 0"
+            stroke="#FFD60A"
+            stroke-width="3"
+            fill="none"
+            stroke-linecap="round"
+          />
+        </svg>
 
-      <!-- ======= LEFT column: LED1 + 470Ω → Q1 collector ======= -->
-      <g class="part" id="p-led1">
-        <line class="wire" x1="200" y1="70" x2="200" y2="104"/>
-        <polygon class="sym" points="188,104 212,104 200,128"/>
-        <line class="sym" x1="188" y1="128" x2="212" y2="128"/>
-        <path class="sym" d="M216,108 l12,-9 M222,116 l12,-9" stroke-width="1.5"/>
-        <path class="sym" d="M228,99 l3,-2 l-1,4 M234,107 l3,-2 l-1,4" fill="var(--line)"/>
-        <circle id="glow1" class="glow" cx="200" cy="116" r="42" fill="url(#g1)"/>
-        <text class="lbl big" x="140" y="120" fill="#ff8d80">LED 1</text>
-        <line class="wire" x1="200" y1="128" x2="200" y2="162"/>
-        <rect class="hit" data-part="led" x="150" y="92" width="100" height="48"><title>LED 1</title></rect>
-      </g>
-      <g class="part" id="p-rc1">
-        <rect class="sym" x="190" y="162" width="20" height="58"/>
-        <text class="lbl" x="222" y="196">470 Ω</text>
-        <line class="wire" x1="200" y1="220" x2="200" y2="438"/>
-        <rect class="hit" data-part="rc" x="176" y="158" width="90" height="66"><title>470 ohm resistor</title></rect>
-      </g>
+        <h1
+          class="font-display font-800 text-buddy-yellow logo-text text-5xl sm:text-6xl md:text-7xl leading-tight"
+        >
+          Circuit Buddy
+        </h1>
+        <p
+          class="font-display font-bold text-cream text-xl md:text-2xl mt-1 italic"
+        >
+          DIY circuit boards
+        </p>
 
-      <!-- ======= RIGHT column: LED2 + 470Ω → Q2 collector ======= -->
-      <g class="part" id="p-led2">
-        <line class="wire" x1="740" y1="70" x2="740" y2="104"/>
-        <polygon class="sym" points="728,104 752,104 740,128"/>
-        <line class="sym" x1="728" y1="128" x2="752" y2="128"/>
-        <path class="sym" d="M756,108 l12,-9 M762,116 l12,-9" stroke-width="1.5"/>
-        <circle id="glow2" class="glow" cx="740" cy="116" r="42" fill="url(#g2)"/>
-        <text class="lbl big" x="778" y="120" fill="#ffd98a" text-anchor="start">LED 2</text>
-        <line class="wire" x1="740" y1="128" x2="740" y2="162"/>
-        <rect class="hit" data-part="led" x="700" y="92" width="110" height="48"><title>LED 2</title></rect>
-      </g>
-      <g class="part" id="p-rc2">
-        <rect class="sym" x="730" y="162" width="20" height="58"/>
-        <text class="lbl" x="660" y="196">470 Ω</text>
-        <line class="wire" x1="740" y1="220" x2="740" y2="438"/>
-        <rect class="hit" data-part="rc" x="652" y="158" width="104" height="66"><title>470 ohm resistor</title></rect>
-      </g>
+        <p
+          class="max-w-xl mx-auto mt-6 text-base md:text-lg text-cream/90 leading-relaxed"
+        >
+          Beginner-friendly electronics kits you solder yourself. Every kit
+          ships with a real PCB, all the parts, and a step-by-step guide — just
+          add a soldering iron and curiosity.
+        </p>
 
-      <!-- ======= base resistors ======= -->
-      <g class="part" id="p-rb1">
-        <line class="wire" x1="380" y1="70" x2="380" y2="112"/>
-        <rect class="sym" x="370" y="112" width="20" height="58"/>
-        <text class="lbl" x="398" y="146">47 kΩ</text>
-        <line class="wire" x1="380" y1="170" x2="380" y2="468"/>
-        <line class="wire" x1="380" y1="468" x2="230" y2="468"/>
-        <rect class="hit" data-part="rb" x="356" y="108" width="100" height="66"><title>47k base resistor</title></rect>
-      </g>
-      <g class="part" id="p-rb2">
-        <line class="wire" x1="540" y1="70" x2="540" y2="112"/>
-        <rect class="sym" x="530" y="112" width="20" height="58"/>
-        <text class="lbl" x="466" y="146">47 kΩ</text>
-        <line class="wire" x1="540" y1="170" x2="540" y2="468"/>
-        <line class="wire" x1="540" y1="468" x2="710" y2="468"/>
-        <rect class="hit" data-part="rb" x="460" y="108" width="100" height="66"><title>47k base resistor</title></rect>
-      </g>
-
-      <!-- ======= C1 : Q1 collector → Q2 base ======= -->
-      <g class="part" id="p-c1">
-        <line class="wire" x1="200" y1="320" x2="300" y2="320"/>
-        <line class="sym" x1="300" y1="298" x2="300" y2="342" stroke-width="3.5"/>
-        <line class="sym" x1="316" y1="298" x2="316" y2="342" stroke-width="3.5"/>
-        <path class="wire" d="M316,320 L370,320 A10 10 0 0 1 390,320 L540,320"/>
-        <text class="lbl" x="284" y="288">C1&#160;&#160;10 µF</text>
-        <text id="c1L" class="minus" x="288" y="362">−</text>
-        <text id="c1R" class="plus"  x="322" y="362">+</text>
-        <rect class="gauge-bg" x="268" y="376" width="80" height="8" rx="4"/>
-        <rect id="c1g" class="gauge-fill" x="268" y="376" width="0" height="8" rx="4"/>
-        <rect class="hit" data-part="cap" x="262" y="284" width="94" height="106"><title>Capacitor C1</title></rect>
-      </g>
-
-      <!-- ======= C2 : Q2 collector → Q1 base ======= -->
-      <g class="part" id="p-c2">
-        <path class="wire" d="M380,258 L530,258 A10 10 0 0 1 550,258 L620,258"/>
-        <line class="sym" x1="620" y1="236" x2="620" y2="280" stroke-width="3.5"/>
-        <line class="sym" x1="636" y1="236" x2="636" y2="280" stroke-width="3.5"/>
-        <line class="wire" x1="636" y1="258" x2="740" y2="258"/>
-        <text class="lbl" x="604" y="226">C2&#160;&#160;10 µF</text>
-        <text id="c2L" class="plus"  x="608" y="300">+</text>
-        <text id="c2R" class="minus" x="642" y="300">−</text>
-        <rect class="gauge-bg" x="588" y="312" width="80" height="8" rx="4"/>
-        <rect id="c2g" class="gauge-fill" x="588" y="312" width="0" height="8" rx="4"/>
-        <rect class="hit" data-part="cap" x="582" y="222" width="94" height="104"><title>Capacitor C2</title></rect>
-      </g>
-
-      <!-- junction dots -->
-      <circle class="dot" cx="200" cy="320" r="4"/><circle class="dot" cx="540" cy="320" r="4"/>
-      <circle class="dot" cx="380" cy="258" r="4"/><circle class="dot" cx="740" cy="258" r="4"/>
-      <circle class="dot" cx="200" cy="70" r="4"/><circle class="dot" cx="380" cy="70" r="4"/>
-      <circle class="dot" cx="540" cy="70" r="4"/><circle class="dot" cx="740" cy="70" r="4"/>
-      <circle class="dot" cx="200" cy="560" r="4"/><circle class="dot" cx="740" cy="560" r="4"/>
-
-      <!-- ======= transistors ======= -->
-      <g class="part" id="p-q1">
-        <circle id="q1case" class="tcase" cx="200" cy="468" r="32"/>
-        <line class="wire thick" x1="212" y1="450" x2="212" y2="486"/>
-        <line class="wire" x1="230" y1="468" x2="212" y2="468"/>
-        <line class="wire" x1="200" y1="438" x2="200" y2="448"/>
-        <line class="wire" x1="212" y1="460" x2="200" y2="448"/>
-        <line class="wire" x1="212" y1="476" x2="200" y2="488"/>
-        <polygon fill="var(--line)" points="200,488 208,481 204,492"/>
-        <line class="wire" x1="200" y1="488" x2="200" y2="560"/>
-        <text class="lbl big" x="118" y="452">Q1</text>
-        <text id="q1badge" class="state-badge" x="150" y="524" fill="#7be0a3">ON</text>
-        <text id="vb1read" class="lbl vread" x="252" y="452" fill="#5bd1ff">+0.7 V</text>
-        <text class="lbl" x="252" y="490" font-size="11">base</text>
-        <rect class="hit" data-part="q" x="160" y="430" width="80" height="78"><title>Transistor Q1</title></rect>
-      </g>
-      <g class="part" id="p-q2">
-        <circle id="q2case" class="tcase" cx="740" cy="468" r="32"/>
-        <line class="wire thick" x1="728" y1="450" x2="728" y2="486"/>
-        <line class="wire" x1="710" y1="468" x2="728" y2="468"/>
-        <line class="wire" x1="740" y1="438" x2="740" y2="448"/>
-        <line class="wire" x1="728" y1="460" x2="740" y2="448"/>
-        <line class="wire" x1="728" y1="476" x2="740" y2="488"/>
-        <polygon fill="var(--line)" points="740,488 732,481 736,492"/>
-        <line class="wire" x1="740" y1="488" x2="740" y2="560"/>
-        <text class="lbl big" x="792" y="452">Q2</text>
-        <text id="q2badge" class="state-badge" x="762" y="524" fill="#ff7a6e">OFF</text>
-        <text id="vb2read" class="lbl vread" x="616" y="452" text-anchor="start" fill="#e8a25d">−4.6 V</text>
-        <text class="lbl" x="648" y="490" font-size="11">base</text>
-        <rect class="hit" data-part="q" x="700" y="430" width="80" height="78"><title>Transistor Q2</title></rect>
-      </g>
-
-      <text class="lbl" x="110" y="600" font-size="12">CONVENTION: bright dashes = current flow · cyan dashes = capacitor recharging · green dashes = base current</text>
-    </svg>
-  </div>
-
-  <!-- ==================== SIDE PANEL ==================== -->
-  <div>
-    <div class="card">
-      <h2>Live commentary</h2>
-      <div class="phase-title" id="phaseTitle"><span class="p1">Q1 ON</span> · LED 1 lit</div>
-      <div class="progress"><div id="phaseBar"></div></div>
-      <p id="narration"></p>
-      <div class="meters">
-        <div class="meter">
-          <div class="name">Q1 base voltage</div>
-          <div class="num q1" id="m1">+0.70 V</div>
-          <div class="bar" style="color:#5bd1ff"><i id="b1"></i></div>
+        <div
+          class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+        >
+          <a
+            href="#circuits"
+            class="w-full sm:w-auto bg-buddy-yellow text-teal-deep font-display font-bold text-lg px-8 py-3 rounded-full shadow-lg hover:bg-buddy-amber hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-4 focus:ring-buddy-yellow/50"
+          >
+            Browse circuits
+          </a>
+          <a
+            href="#about"
+            class="w-full sm:w-auto border-2 border-buddy-yellow text-buddy-yellow font-display font-bold text-lg px-8 py-3 rounded-full hover:bg-buddy-yellow hover:text-teal-deep transition-all focus:outline-none focus:ring-4 focus:ring-buddy-yellow/50"
+          >
+            How it works
+          </a>
         </div>
-        <div class="meter">
-          <div class="name">Q2 base voltage</div>
-          <div class="num q2" id="m2">−4.60 V</div>
-          <div class="bar" style="color:#e8a25d"><i id="b2"></i></div>
+
+        <!-- Badges, styled like the package footer -->
+        <div
+          class="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm"
+        >
+          <span
+            class="inline-flex items-center gap-2 bg-teal-deep/80 border border-teal-trace/50 px-4 py-2 rounded-full font-bold"
+          >
+            <svg
+              class="w-4 h-4 text-buddy-yellow"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" />
+            </svg>
+            USB-C Compatible
+          </span>
+          <span
+            class="inline-flex items-center gap-2 bg-teal-deep/80 border border-teal-trace/50 px-4 py-2 rounded-full font-bold"
+          >
+            <svg
+              class="w-4 h-4 text-buddy-yellow"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2 3 7v10l9 5 9-5V7l-9-5zm0 2.2 6.8 3.8L12 11.8 5.2 8 12 4.2z"
+              />
+            </svg>
+            No experience needed
+          </span>
+          <span
+            class="inline-flex items-center gap-2 bg-teal-deep/80 border border-teal-trace/50 px-4 py-2 rounded-full font-bold"
+          >
+            <svg
+              class="w-4 h-4 text-buddy-yellow"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"
+              />
+            </svg>
+            Made for beginners
+          </span>
         </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section id="about" class="bg-cream text-teal-deep">
+        <div class="max-w-6xl mx-auto px-4 py-14 md:py-20">
+          <p
+            class="font-mono text-sm tracking-widest uppercase text-teal-brand mb-2"
+          >
+            // about
+          </p>
+          <h2 class="font-display font-800 text-3xl md:text-4xl">
+            What is Circuit Buddy?
+          </h2>
+
+          <div class="mt-6 grid gap-8 md:grid-cols-2 md:gap-12 items-start">
+            <div class="space-y-4 text-base md:text-lg leading-relaxed">
+              <p>
+                Circuit Buddy is an open project for learning electronics by
+                <strong>building real circuits</strong>, not just simulating
+                them. Each kit is a small, single-purpose PCB — a blinker, a
+                siren, a touch switch — designed to teach one idea at a time.
+              </p>
+              <p>
+                Every board is numbered like a collectible. Start with
+                <span class="font-mono font-bold">PCB No: 01</span>
+                and work your way up: the circuits slowly introduce new
+                components, from resistors and capacitors to transistors and
+                timer ICs.
+              </p>
+              <p>
+                All schematics, guides, and firmware live right here on GitHub —
+                free to read, remix, and share.
+              </p>
+            </div>
+
+            <!-- "How it works" steps: a real sequence, so numbering carries meaning -->
+            <ol class="space-y-4">
+              <li
+                class="flex gap-4 items-start bg-white rounded-blob p-4 shadow-sm"
+              >
+                <span
+                  class="shrink-0 w-10 h-10 grid place-items-center rounded-full bg-buddy-yellow font-mono font-bold text-teal-deep"
+                  >1</span
+                >
+                <div>
+                  <h3 class="font-display font-bold text-lg">Pick a kit</h3>
+                  <p class="text-sm text-teal-deep/80">
+                    Choose a circuit below. Each one lists its parts and
+                    difficulty.
+                  </p>
+                </div>
+              </li>
+              <li
+                class="flex gap-4 items-start bg-white rounded-blob p-4 shadow-sm"
+              >
+                <span
+                  class="shrink-0 w-10 h-10 grid place-items-center rounded-full bg-buddy-yellow font-mono font-bold text-teal-deep"
+                  >2</span
+                >
+                <div>
+                  <h3 class="font-display font-bold text-lg">
+                    Solder it together
+                  </h3>
+                  <p class="text-sm text-teal-deep/80">
+                    Follow the illustrated guide — the silkscreen shows exactly
+                    where each part goes.
+                  </p>
+                </div>
+              </li>
+              <li
+                class="flex gap-4 items-start bg-white rounded-blob p-4 shadow-sm"
+              >
+                <span
+                  class="shrink-0 w-10 h-10 grid place-items-center rounded-full bg-buddy-yellow font-mono font-bold text-teal-deep"
+                  >3</span
+                >
+                <div>
+                  <h3 class="font-display font-bold text-lg">
+                    Power it with USB-C
+                  </h3>
+                  <p class="text-sm text-teal-deep/80">
+                    Plug into any USB-C charger, watch it come alive, then learn
+                    how it works.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CIRCUITS ============ -->
+      <section id="circuits" class="max-w-6xl mx-auto px-4 py-14 md:py-20">
+        <p
+          class="font-mono text-sm tracking-widest uppercase text-buddy-yellow mb-2"
+        >
+          // shop
+        </p>
+        <h2 class="font-display font-800 text-3xl md:text-4xl text-cream">
+          Circuits available to buy
+        </h2>
+        <p class="mt-2 text-cream/80 max-w-xl">
+          Each kit includes the PCB, all components, and a printed quick-start
+          card.
+        </p>
+
+        <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Card 01 -->
+          <article
+            class="bg-teal-deep/85 border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-start justify-between">
+              <span
+                class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+                >PCB No: <b class="text-buddy-yellow">01</b></span
+              >
+              <span
+                class="text-xs font-bold bg-buddy-yellow text-teal-deep px-3 py-1 rounded-full"
+                >Beginner</span
+              >
+            </div>
+            <h3 class="font-display font-bold text-2xl mt-4 text-cream">
+              Multivibrator Circuit
+            </h3>
+            <p class="text-sm text-cream/80 mt-2 flex-1">
+              The classic two-transistor LED blinker. Learn how capacitors and
+              transistors take turns switching — the "hello world" of
+              electronics.
+            </p>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="font-display font-800 text-2xl text-buddy-yellow"
+                >$9</span
+              >
+              <a
+                href="#contact"
+                class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+                >Buy kit</a
+              >
+            </div>
+          </article>
+
+          <!-- Card 02 -->
+          <article
+            class="bg-teal-deep/85 border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-start justify-between">
+              <span
+                class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+                >PCB No: <b class="text-buddy-yellow">02</b></span
+              >
+              <span
+                class="text-xs font-bold bg-buddy-yellow text-teal-deep px-3 py-1 rounded-full"
+                >Beginner</span
+              >
+            </div>
+            <h3 class="font-display font-bold text-2xl mt-4 text-cream">
+              Touch Switch
+            </h3>
+            <p class="text-sm text-cream/80 mt-2 flex-1">
+              Turn an LED on with a fingertip. A gentle introduction to
+              transistor amplification and how tiny signals control bigger ones.
+            </p>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="font-display font-800 text-2xl text-buddy-yellow"
+                >$9</span
+              >
+              <a
+                href="#contact"
+                class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+                >Buy kit</a
+              >
+            </div>
+          </article>
+
+          <!-- Card 03 -->
+          <article
+            class="bg-teal-deep/85 border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-start justify-between">
+              <span
+                class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+                >PCB No: <b class="text-buddy-yellow">03</b></span
+              >
+              <span
+                class="text-xs font-bold bg-buddy-yellow text-teal-deep px-3 py-1 rounded-full"
+                >Beginner</span
+              >
+            </div>
+            <h3 class="font-display font-bold text-2xl mt-4 text-cream">
+              Dark-Activated Night Light
+            </h3>
+            <p class="text-sm text-cream/80 mt-2 flex-1">
+              An LDR senses the dark and switches the LED on automatically. Your
+              first sensor circuit.
+            </p>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="font-display font-800 text-2xl text-buddy-yellow"
+                >$10</span
+              >
+              <a
+                href="#contact"
+                class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+                >Buy kit</a
+              >
+            </div>
+          </article>
+
+          <!-- Card 04 -->
+          <article
+            class="bg-teal-deep/85 border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-start justify-between">
+              <span
+                class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+                >PCB No: <b class="text-buddy-yellow">04</b></span
+              >
+              <span
+                class="text-xs font-bold bg-teal-light text-teal-deep px-3 py-1 rounded-full"
+                >Intermediate</span
+              >
+            </div>
+            <h3 class="font-display font-bold text-2xl mt-4 text-cream">
+              555 LED Chaser
+            </h3>
+            <p class="text-sm text-cream/80 mt-2 flex-1">
+              Ten LEDs racing in a loop, driven by the legendary 555 timer and a
+              4017 counter. Adjustable speed knob included.
+            </p>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="font-display font-800 text-2xl text-buddy-yellow"
+                >$12</span
+              >
+              <a
+                href="#contact"
+                class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+                >Buy kit</a
+              >
+            </div>
+          </article>
+
+          <!-- Card 05 -->
+          <article
+            class="bg-teal-deep/85 border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-start justify-between">
+              <span
+                class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+                >PCB No: <b class="text-buddy-yellow">05</b></span
+              >
+              <span
+                class="text-xs font-bold bg-teal-light text-teal-deep px-3 py-1 rounded-full"
+                >Intermediate</span
+              >
+            </div>
+            <h3 class="font-display font-bold text-2xl mt-4 text-cream">
+              Mini Siren
+            </h3>
+            <p class="text-sm text-cream/80 mt-2 flex-1">
+              A rising-and-falling police siren built from two oscillators and a
+              small speaker. Loud enough to annoy a sibling.
+            </p>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="font-display font-800 text-2xl text-buddy-yellow"
+                >$12</span
+              >
+              <a
+                href="#contact"
+                class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+                >Buy kit</a
+              >
+            </div>
+          </article>
+
+          <!-- Card 06 -->
+          <article
+            class="bg-teal-deep/85 border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-start justify-between">
+              <span
+                class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+                >PCB No: <b class="text-buddy-yellow">06</b></span
+              >
+              <span
+                class="text-xs font-bold bg-teal-light text-teal-deep px-3 py-1 rounded-full"
+                >Intermediate</span
+              >
+            </div>
+            <h3 class="font-display font-bold text-2xl mt-4 text-cream">
+              FM Radio Receiver
+            </h3>
+            <p class="text-sm text-cream/80 mt-2 flex-1">
+              Tune into real broadcasts with a single-chip FM receiver,
+              headphone jack, and a hand-wound antenna coil you make yourself.
+            </p>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="font-display font-800 text-2xl text-buddy-yellow"
+                >$15</span
+              >
+              <a
+                href="#contact"
+                class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+                >Buy kit</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section
+        id="contact"
+        class="circuit-bg-dark border-t-4 border-buddy-yellow"
+      >
+        <div class="max-w-6xl mx-auto px-4 py-14 md:py-20">
+          <p
+            class="font-mono text-sm tracking-widest uppercase text-buddy-yellow mb-2"
+          >
+            // contact
+          </p>
+          <h2 class="font-display font-800 text-3xl md:text-4xl text-cream">
+            Get in touch
+          </h2>
+          <p class="mt-2 text-cream/80 max-w-xl">
+            Want to order a kit, ask a soldering question, or suggest the next
+            PCB? Send a message — we reply within a day or two.
+          </p>
+
+          <div class="mt-8 grid gap-8 md:grid-cols-2">
+            <!-- Contact form (Formspree-style endpoint works on GitHub Pages) -->
+            <form
+              action="https://formspree.io/f/your-form-id"
+              method="POST"
+              class="space-y-4"
+            >
+              <div>
+                <label for="name" class="block font-bold mb-1">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Ada Lovelace"
+                  class="w-full rounded-xl bg-white/95 text-teal-deep px-4 py-3 placeholder:text-teal-deep/40 focus:outline-none focus:ring-4 focus:ring-buddy-yellow/60"
+                />
+              </div>
+              <div>
+                <label for="email" class="block font-bold mb-1">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  class="w-full rounded-xl bg-white/95 text-teal-deep px-4 py-3 placeholder:text-teal-deep/40 focus:outline-none focus:ring-4 focus:ring-buddy-yellow/60"
+                />
+              </div>
+              <div>
+                <label for="message" class="block font-bold mb-1"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="I'd like to order PCB No: 01…"
+                  class="w-full rounded-xl bg-white/95 text-teal-deep px-4 py-3 placeholder:text-teal-deep/40 focus:outline-none focus:ring-4 focus:ring-buddy-yellow/60"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full sm:w-auto bg-buddy-yellow text-teal-deep font-display font-bold text-lg px-8 py-3 rounded-full hover:bg-buddy-amber transition-colors focus:outline-none focus:ring-4 focus:ring-buddy-yellow/50"
+              >
+                Send message
+              </button>
+            </form>
+
+            <!-- Direct links -->
+            <div class="space-y-4">
+              <a
+                href="mailto:hello@circuitbuddy.dev"
+                class="flex items-center gap-4 bg-teal-brand/60 border border-teal-trace/40 rounded-blob p-4 hover:border-buddy-yellow/70 transition-colors"
+              >
+                <span
+                  class="w-11 h-11 grid place-items-center rounded-full bg-buddy-yellow text-teal-deep shrink-0"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M2 5h20v14H2V5zm2 2v.4l8 5.1 8-5.1V7H4zm16 10V9.9l-8 5.1-8-5.1V17h16z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p class="font-bold">Email</p>
+                  <p class="text-sm text-cream/80 font-mono">
+                    hello@circuitbuddy.dev
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href="https://github.com/circuitbuddy"
+                class="flex items-center gap-4 bg-teal-brand/60 border border-teal-trace/40 rounded-blob p-4 hover:border-buddy-yellow/70 transition-colors"
+              >
+                <span
+                  class="w-11 h-11 grid place-items-center rounded-full bg-buddy-yellow text-teal-deep shrink-0"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p class="font-bold">GitHub</p>
+                  <p class="text-sm text-cream/80 font-mono">
+                    github.com/circuitbuddy
+                  </p>
+                </div>
+              </a>
+
+              <div
+                class="flex items-center gap-4 bg-teal-brand/60 border border-teal-trace/40 rounded-blob p-4"
+              >
+                <span
+                  class="w-11 h-11 grid place-items-center rounded-full bg-buddy-yellow text-teal-deep shrink-0"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h6v2h-6v-2z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p class="font-bold">Guides &amp; schematics</p>
+                  <p class="text-sm text-cream/80 font-mono">
+                    circuitbuddy.github.io
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="bg-teal-deep border-t border-teal-trace/40">
+      <div
+        class="max-w-6xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-cream/70"
+      >
+        <p class="font-display font-bold text-buddy-yellow">
+          Circuit Buddy
+          <span class="text-cream/60 font-body font-normal"
+            >— DIY circuit boards</span
+          >
+        </p>
+        <p class="font-mono">© 2026 · open hardware · solder responsibly</p>
       </div>
-      <p class="threshold-note">A silicon transistor switches ON when its base reaches about <b>+0.7 V</b>. That single fact drives the whole blink.</p>
-    </div>
+    </footer>
 
-    <div class="card" id="inspector">
-      <h2>Component inspector</h2>
-      <div id="inspTitle">Tap any part on the blueprint</div>
-      <p id="inspBody">Click a transistor, capacitor, resistor, LED, or the battery in the schematic and its job will be explained here.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ==================== SCOPE ==================== -->
-<div class="card scope-card">
-  <h2>Oscilloscope · base voltages over time</h2>
-  <div class="legend">
-    <span><i class="chip" style="background:#5bd1ff"></i>Q1 base</span>
-    <span><i class="chip" style="background:#e8a25d"></i>Q2 base</span>
-    <span><i class="chip" style="background:#7be0a3"></i>+0.7 V switch-on threshold</span>
-  </div>
-  <canvas id="scope" height="190"></canvas>
-</div>
-
-<!-- ==================== THE CYCLE ==================== -->
-<div class="card steps">
-  <h2>The whole cycle in four moments</h2>
-  <p><span class="k">01 · SNAP</span><b>Q1 switches on.</b> Its collector — the top of the transistor — drops from 6 V to nearly 0 V. Capacitor C1 was charged up, and a capacitor cannot change its voltage instantly, so it drags Q2's base down with it, to about <b>−4.6 V</b>. Q2 is forced off and LED 2 goes dark, while current now flows freely through LED 1 and Q1.</p>
-  <p><span class="k">02 · RECHARGE</span><b>The timer runs.</b> C1 slowly recharges through the 47 kΩ resistor. Q2's base voltage climbs from −4.6 V toward +6 V — but it never gets there, because…</p>
-  <p><span class="k">03 · TRIGGER</span><b>…at +0.7 V, Q2 wakes up.</b> The moment Q2's base crosses the threshold, Q2 switches on and its collector crashes to 0 V. Now capacitor C2 delivers the same dirty trick in reverse: it yanks Q1's base down to −4.6 V, knocking Q1 off. LED 1 dies, LED 2 lights.</p>
-  <p><span class="k">04 · REPEAT</span><b>The mirror image plays out.</b> C2 recharges through the other 47 kΩ resistor until Q1's base hits +0.7 V again — flip, and we are back at step 01. Each half of the blink lasts about <b>0.7 × R × C</b> = 0.7 × 47 000 × 0.00001 ≈ <b>0.33 seconds</b> with these parts. (The animation runs slower than real life so you can watch it think.) Want a slower blink? Use bigger capacitors or bigger base resistors.</p>
-</div>
-
-<div class="titleblock" aria-hidden="true">
-  <div><span>PROJECT</span><b>ASTABLE MULTIVIBRATOR</b></div>
-  <div><span>SHEET</span><b>1 OF 1</b></div>
-  <div><span>DRAWN BY</span><b>CLAUDE</b></div>
-  <div><span>SCALE</span><b>SLOWED FOR HUMANS</b></div>
-</div>
-
-</div><!-- /wrap -->
-
-<script>
-(function(){
-"use strict";
-/* ---------------- simulation ---------------- */
-const VCC = 6, VTH = 0.7, V0 = -(VCC - 1.4);          // kick-down voltage ≈ −4.6 V
-const HALF = 1.9;                                      // seconds per half-cycle at 1×
-const TAU  = HALF / Math.LN2;
-let onQ = 1;            // which transistor is ON (1 or 2)
-let t = 0;              // time inside current half-cycle
-let speed = 0.6;
-let running = true;
-let flash = 0;
-
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (reduced) running = false;
-
-const $ = id => document.getElementById(id);
-const glow1=$('glow1'), glow2=$('glow2'),
-      q1case=$('q1case'), q2case=$('q2case'),
-      q1badge=$('q1badge'), q2badge=$('q2badge'),
-      vb1read=$('vb1read'), vb2read=$('vb2read'),
-      m1=$('m1'), m2=$('m2'), b1=$('b1'), b2=$('b2'),
-      c1g=$('c1g'), c2g=$('c2g'),
-      c1L=$('c1L'), c1R=$('c1R'), c2L=$('c2L'), c2R=$('c2R'),
-      flowQ1=$('flowQ1'), flowQ2=$('flowQ2'),
-      phaseTitle=$('phaseTitle'), phaseBar=$('phaseBar'), narration=$('narration');
-
-function offBaseV(){ return VCC - (VCC - V0) * Math.exp(-t / TAU); }
-
-function flip(){
-  onQ = (onQ === 1) ? 2 : 1;
-  t = 0; flash = 1;
-}
-
-function fmt(v){ return (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2) + ' V'; }
-
-function setFlows(group, on){
-  group.querySelectorAll('.flow').forEach(p => p.classList.toggle('visible', on));
-}
-
-const NARR = {
-  kick: (on, off, led) =>
-    `SNAP! Q${on} just switched on and its collector crashed from 6 V to ~0 V. ` +
-    `The capacitor passed that sudden drop straight to Q${off}'s base, yanking it down to −4.6 V. ` +
-    `Q${off} is knocked out — LED ${off} goes dark while LED ${on} lights up.`,
-  charge: (on, off) =>
-    `The waiting game. The capacitor is recharging through the 47 kΩ resistor (cyan dashes), ` +
-    `so Q${off}'s base voltage is climbing back up from −4.6 V. Nothing switches until it reaches +0.7 V.`,
-  almost: (on, off) =>
-    `Q${off}'s base is almost at +0.7 V — the switch-on threshold. Any moment now it will wake up, ` +
-    `steal the show, and knock Q${on} off in exactly the same way…`
-};
-
-function updateNarration(frac){
-  const on = onQ, off = (onQ === 1) ? 2 : 1;
-  const cls = on === 1 ? 'p1' : 'p2';
-  phaseTitle.innerHTML = `<span class="${cls}">Q${on} ON</span> · LED ${on} lit`;
-  phaseBar.style.width = (frac * 100).toFixed(1) + '%';
-  narration.textContent =
-    frac < 0.17 ? NARR.kick(on, off) :
-    frac < 0.82 ? NARR.charge(on, off) :
-                  NARR.almost(on, off);
-}
-
-function render(){
-  const vOff = offBaseV();
-  const vB1 = (onQ === 1) ? VTH : vOff;
-  const vB2 = (onQ === 2) ? VTH : vOff;
-  const frac = Math.min(1, t / HALF);
-  const chargeFrac = (vOff - V0) / (VTH - V0);   // 0 → 1 over the half cycle
-
-  // LEDs + transistors
-  glow1.style.opacity = (onQ === 1) ? (0.85 + 0.3 * flash) : 0;
-  glow2.style.opacity = (onQ === 2) ? (0.85 + 0.3 * flash) : 0;
-  q1case.classList.toggle('on', onQ === 1);
-  q2case.classList.toggle('on', onQ === 2);
-  q1badge.textContent = onQ === 1 ? 'ON' : 'OFF';
-  q2badge.textContent = onQ === 2 ? 'ON' : 'OFF';
-  q1badge.setAttribute('fill', onQ === 1 ? '#7be0a3' : '#ff7a6e');
-  q2badge.setAttribute('fill', onQ === 2 ? '#7be0a3' : '#ff7a6e');
-
-  // flows
-  setFlows(flowQ1, onQ === 1 && running);
-  setFlows(flowQ2, onQ === 2 && running);
-
-  // voltages
-  vb1read.textContent = fmt(vB1); m1.textContent = fmt(vB1);
-  vb2read.textContent = fmt(vB2); m2.textContent = fmt(vB2);
-  setBar(b1, vB1); setBar(b2, vB2);
-
-  // capacitor gauges: the recovering cap belongs to the OFF transistor
-  // C1 recharges while Q1 is ON (it controls Q2's base); C2 while Q2 is ON.
-  if (onQ === 1){
-    c1g.setAttribute('width', 80 * chargeFrac);
-    c2g.setAttribute('width', 80);
-    c1L.textContent = '−'; c1L.setAttribute('class','minus');
-    c1R.textContent = chargeFrac > 0.75 ? '+' : '−';
-    c1R.setAttribute('class', chargeFrac > 0.75 ? 'plus' : 'minus');
-    c2L.textContent = '−'; c2L.setAttribute('class','minus');
-    c2R.textContent = '+'; c2R.setAttribute('class','plus');
-  } else {
-    c2g.setAttribute('width', 80 * chargeFrac);
-    c1g.setAttribute('width', 80);
-    c2R.textContent = '−'; c2R.setAttribute('class','minus');
-    c2L.textContent = chargeFrac > 0.75 ? '+' : '−';
-    c2L.setAttribute('class', chargeFrac > 0.75 ? 'plus' : 'minus');
-    c1R.textContent = '−'; c1R.setAttribute('class','minus');
-    c1L.textContent = '+'; c1L.setAttribute('class','plus');
-  }
-
-  updateNarration(frac);
-}
-
-function setBar(el, v){
-  // map −5 … +6.5 onto bar; centre at 0
-  const half = 50;
-  const pct = Math.max(-1, Math.min(1, v / 6.5));
-  if (pct >= 0){ el.style.left = '50%'; el.style.width = (pct * half) + '%'; }
-  else { el.style.width = (-pct * half) + '%'; el.style.left = (50 + pct * half) + '%'; }
-}
-
-/* ---------------- oscilloscope ---------------- */
-const cv = $('scope'), ctx = cv.getContext('2d');
-let samples = [];
-function resizeScope(){
-  const dpr = window.devicePixelRatio || 1;
-  cv.width  = cv.clientWidth * dpr;
-  cv.height = 190 * dpr;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  samples = samples.slice(-cv.clientWidth);
-}
-window.addEventListener('resize', resizeScope);
-
-function yOf(v){                       // map +6.5 → top, −5.5 → bottom
-  const h = 190, top = 8, bot = h - 8;
-  return top + (6.5 - v) / (6.5 + 5.5) * (bot - top);
-}
-function drawScope(){
-  const w = cv.clientWidth, h = 190;
-  ctx.clearRect(0, 0, w, h);
-  ctx.strokeStyle = '#173e69'; ctx.lineWidth = 1;
-  for (let v = -4; v <= 6; v += 2){
-    ctx.beginPath(); ctx.moveTo(0, yOf(v)); ctx.lineTo(w, yOf(v)); ctx.stroke();
-  }
-  ctx.fillStyle = '#5f83a8'; ctx.font = '10px IBM Plex Mono, monospace';
-  ctx.fillText('+6', 4, yOf(6)-3); ctx.fillText(' 0', 4, yOf(0)-3); ctx.fillText('−4', 4, yOf(-4)-3);
-  // threshold
-  ctx.strokeStyle = '#7be0a3'; ctx.setLineDash([5,5]);
-  ctx.beginPath(); ctx.moveTo(0, yOf(VTH)); ctx.lineTo(w, yOf(VTH)); ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillStyle = '#7be0a3'; ctx.fillText('+0.7 V threshold', w - 118, yOf(VTH) - 5);
-  // traces
-  const draw = (key, col) => {
-    ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath();
-    samples.forEach((s, i) => {
-      const x = w - samples.length + i;
-      i === 0 ? ctx.moveTo(x, yOf(s[key])) : ctx.lineTo(x, yOf(s[key]));
-    });
-    ctx.stroke();
-  };
-  draw('v1', '#5bd1ff'); draw('v2', '#e8a25d');
-}
-
-/* ---------------- main loop ---------------- */
-let last = performance.now();
-function loop(now){
-  const dtReal = Math.min(0.05, (now - last) / 1000);
-  last = now;
-  if (running){
-    t += dtReal * speed;
-    if (offBaseV() >= VTH) flip();
-    flash = Math.max(0, flash - dtReal * 3);
-    const vOff = offBaseV();
-    samples.push({ v1: onQ === 1 ? VTH : vOff, v2: onQ === 2 ? VTH : vOff });
-    if (samples.length > cv.clientWidth) samples.shift();
-  }
-  render();
-  drawScope();
-  requestAnimationFrame(loop);
-}
-
-/* ---------------- controls ---------------- */
-const playBtn = $('playBtn');
-playBtn.textContent = running ? 'Pause' : 'Play';
-playBtn.addEventListener('click', () => {
-  running = !running;
-  playBtn.textContent = running ? 'Pause' : 'Play';
-});
-$('resetBtn').addEventListener('click', () => { onQ = 1; t = 0; samples = []; flash = 1; });
-const speedIn = $('speed'), speedVal = $('speedVal');
-function applySpeed(){
-  speed = parseFloat(speedIn.value);
-  speedVal.textContent = speed.toFixed(2).replace(/0$/,'') + '×';
-  document.querySelectorAll('.flow').forEach(p => p.style.animationDuration = (1.1 / speed) + 's');
-}
-speedIn.addEventListener('input', applySpeed);
-applySpeed();
-
-/* ---------------- component inspector ---------------- */
-const INFO = {
-  battery: ['Battery · 6 V', 'The pump that pushes current around every loop. Conventional current leaves the <b>+</b> terminal, flows through whichever paths are open, and returns to <b>−</b>. Everything in this circuit is powered by it — four AA cells work nicely.'],
-  led: ['LED + its transistor', 'A Light-Emitting Diode glows when current flows through it in the forward direction (into the flat-bar side). It only lights when the transistor <b>below it is ON</b>, because the transistor is the switch that completes its path to ground. The two LEDs are wired to opposite transistors, so they always alternate.'],
-  rc: ['470 Ω · LED current limiter', 'LEDs are greedy — connect one straight to 6 V and it burns out in a flash. This resistor limits the current to a safe ~9 mA: (6 V − 2 V LED drop − 0.2 V transistor) ÷ 470 Ω. It plays <b>no role in the timing</b>; it is pure bodyguard.'],
-  rb: ['47 kΩ · the timing resistor', 'This is half of the clock. After a capacitor gets yanked negative, charge trickles back <b>through this resistor</b> to lift the base voltage toward +0.7 V. Bigger resistance = slower trickle = slower blink. Together with the 10 µF cap it sets each half-period: t ≈ 0.7 × R × C ≈ 0.33 s.'],
-  cap: ['10 µF capacitor · the memory', 'The heart of the trick. A capacitor <b>cannot change its voltage instantly</b>, so when one transistor\'s collector suddenly drops 6 V, the capacitor shoves the other transistor\'s base down by the same amount — to about −4.6 V. Then it slowly recharges through the 47 kΩ resistor, counting time until the next flip. Bigger capacitance = longer blink. Mind the polarity if you use electrolytics.'],
-  q: ['NPN transistor · the switch', 'Think of it as an electrically-controlled switch. Feed its <b>base</b> more than ~0.7 V and it turns ON: current can flow from <b>collector</b> (top) to <b>emitter</b> (bottom), lighting its LED and pulling its collector down to ~0 V. Below 0.7 V it is fully OFF. 2N2222, BC547 or 2N3904 all work here.']
-};
-document.querySelectorAll('.hit').forEach(el => {
-  el.addEventListener('click', () => {
-    const info = INFO[el.dataset.part];
-    if (!info) return;
-    $('inspTitle').textContent = info[0];
-    $('inspBody').innerHTML = info[1];
-  });
-});
-
-resizeScope();
-requestAnimationFrame(loop);
-})();
-</script>
-</body>
+    <script>
+      // Mobile menu toggle
+      const btn = document.getElementById("menuBtn");
+      const menu = document.getElementById("mobileMenu");
+      btn.addEventListener("click", () => {
+        const open = menu.classList.toggle("hidden") === false;
+        menu.classList.toggle("flex", open);
+        btn.setAttribute("aria-expanded", open);
+      });
+      // Close menu when a link is tapped
+      menu.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          menu.classList.remove("flex");
+          btn.setAttribute("aria-expanded", "false");
+        }),
+      );
+    </script>
+  </body>
 </html>
