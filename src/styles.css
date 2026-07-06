@@ -1,3 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --color-teal-deep: #0b5d50;
+  --color-teal-brand: #0f7d6c;
+  --color-teal-trace: #2e9a87;
+  --color-teal-light: #54b3a0;
+
+  --color-buddy-yellow: #ffd60a;
+  --color-buddy-amber: #f5c400;
+
+  --color-cream: #fff9e8;
+
+  --font-display: 'Baloo 2', cursive;
+  --font-body: Nunito, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --radius-blob: 1.75rem;
+}
+
+/* Circuit-trace background pattern, drawn to echo the package artwork */
+
+.circuit-bg-dark {
+  background-color: #0b5d50;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23177263' stroke-width='3' opacity='0.6'%3E%3Cpath d='M20 20h60v40h40'/%3E%3Cpath d='M200 30v50h-50'/%3E%3Cpath d='M30 200v-60h50'/%3E%3Cpath d='M120 200v-40h60'/%3E%3C/g%3E%3Cg fill='%23177263' opacity='0.6'%3E%3Ccircle cx='20' cy='20' r='5'/%3E%3Ccircle cx='120' cy='60' r='5'/%3E%3Ccircle cx='180' cy='160' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+/* Bubbly logo text with dark outline, like the package logo */
+.logo-text {
+  -webkit-text-stroke: 0;
+  text-shadow:
+    0 3px 0 #0b5d50,
+    0 4px 6px rgba(0, 0, 0, 0.25);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
