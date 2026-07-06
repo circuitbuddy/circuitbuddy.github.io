@@ -1,0 +1,27 @@
+<article
+  class="bg-[#128572] border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+>
+  <div class="flex items-start justify-between">
+    <span class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+      >PCB No: <b class="text-buddy-yellow">{{ pcbNo() }}</b></span
+    >
+    <span
+      class="text-xs font-bold text-teal-deep px-3 py-1 rounded-full"
+      [class.bg-buddy-yellow]="level() === 'Beginner'"
+      [class.bg-teal-light]="level() !== 'Beginner'"
+      >{{ level() }}</span
+    >
+  </div>
+
+  <h3 class="font-display font-bold text-2xl mt-4 text-cream">{{ title() }}</h3>
+  <p class="text-sm text-cream/80 mt-2 flex-1">{{ description() }}</p>
+
+  <div class="mt-5 flex items-center justify-between">
+    <span class="font-display font-800 text-2xl text-buddy-yellow">${{ price() }}</span>
+    <a
+      href="#contact"
+      class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+      >Buy kit</a
+    >
+  </div>
+</article>
