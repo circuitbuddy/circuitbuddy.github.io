@@ -1,0 +1,109 @@
+<div class="relative w-full select-none">
+  <!-- Viewport: clips the zoomed/panned content -->
+  <div
+    #viewport
+    class="relative w-full overflow-hidden rounded-blob border border-teal-trace/40 bg-teal-deep/40 touch-none"
+    [class.cursor-grab]="canPan() && !isDragging()"
+    [class.cursor-grabbing]="isDragging()"
+    [style.aspect-ratio]="aspectRatio()"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+    (wheel)="onWheel($event)"
+  >
+    <!-- Stage: image + overlay share ONE transform, so markers stay aligned -->
+    <div
+      class="absolute inset-0 origin-top-left will-change-transform"
+      [style.transform]="transform()"
+    >
+      <img
+        #img
+        [src]="imageSrc()"
+        [alt]="image()"
+        (load)="onImageLoad(img)"
+        draggable="false"
+        class="block h-full w-full object-fill pointer-events-none"
+      />
+
+      @if (viewBox(); as vb) {
+        <svg
+          class="absolute inset-0 h-full w-full"
+          [attr.viewBox]="vb"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          @for (m of markers(); track m.name) {
+            @if (m.kind === 'circle') {
+              <circle
+                class="pcb-marker"
+                [class.pcb-marker--selected]="selected() === m.name"
+                [attr.cx]="m.cx"
+                [attr.cy]="m.cy"
+                [attr.r]="m.r"
+                vector-effect="non-scaling-stroke"
+                (click)="onPartClick(m.name)"
+              >
+                <title>{{ m.label || m.name }}</title>
+              </circle>
+            } @else {
+              <rect
+                class="pcb-marker"
+                [class.pcb-marker--selected]="selected() === m.name"
+                [attr.x]="m.x"
+                [attr.y]="m.y"
+                [attr.width]="m.width"
+                [attr.height]="m.height"
+                rx="14"
+                vector-effect="non-scaling-stroke"
+                (click)="onPartClick(m.name)"
+              >
+                <title>{{ m.label || m.name }}</title>
+              </rect>
+            }
+          }
+        </svg>
+      }
+    </div>
+  </div>
+
+  <!-- Zoom controls -->
+  <div class="absolute bottom-3 left-3 z-10 flex flex-row gap-2">
+    <button
+      type="button"
+      (click)="zoomIn()"
+      [disabled]="!canZoomIn()"
+      aria-label="Zoom in"
+      class="grid h-10 w-10 place-items-center rounded-full border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" d="M12 5v14M5 12h14" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      (click)="zoomOut()"
+      [disabled]="!canZoomOut()"
+      aria-label="Zoom out"
+      class="grid h-10 w-10 place-items-center rounded-full border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" d="M5 12h14" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      (click)="reset()"
+      [disabled]="!canZoomOut()"
+      aria-label="Reset zoom"
+      class="grid h-10 w-10 place-items-center rounded-full border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 9a8 8 0 0113.7-3.7L20 8m0-4v4h-4M20 15a8 8 0 01-13.7 3.7L4 16m0 4v-4h4"
+        />
+      </svg>
+    </button>
+  </div>
+</div>

@@ -33,9 +33,33 @@
         {{ 'circuit.multivibrator.title' | t }}
       </h1>
 
-      <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl" [innerHTML]="'circuit.multivibrator.p1' | t"></p>
+      <p
+        class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl"
+        [innerHTML]="'circuit.multivibrator.p1' | t"
+      ></p>
 
-      <p class="mt-4 text-base text-cream/80 leading-relaxed max-w-2xl" [innerHTML]="'circuit.multivibrator.p2' | t"></p>
+      <p
+        class="mt-4 text-base text-cream/80 leading-relaxed max-w-2xl"
+        [innerHTML]="'circuit.multivibrator.p2' | t"
+      ></p>
+
+      <!-- Interactive PCB preview: zoom, drag to pan, tap a part -->
+      <div class="mt-8">
+        <app-pcb-preview
+          image="multivibrator.png"
+          [config]="pcbConfig"
+          (partClick)="onPartClick($event)"
+          class="max-w-lg"
+        ></app-pcb-preview>
+
+        <p class="mt-3 font-mono text-sm text-cream/70">
+          @if (selectedPart(); as part) {
+            Selected part: <span class="font-bold text-buddy-yellow">{{ part }}</span>
+          } @else {
+            Tap a highlighted part on the board to identify it.
+          }
+        </p>
+      </div>
     </div>
   </div>
 </main>
