@@ -69,8 +69,8 @@
     </div>
   </div>
 
-  <!-- Zoom controls -->
-  <div class="absolute bottom-3 left-3 z-10 flex flex-row gap-2">
+  <!-- Zoom controls (below the preview) -->
+  <div class="mt-3 flex flex-row gap-2">
     <button
       type="button"
       (click)="zoomIn()"
@@ -96,7 +96,7 @@
     <button
       type="button"
       (click)="reset()"
-      [disabled]="!canZoomOut()"
+      [disabled]="!canZoomOut() && !selected()"
       aria-label="Reset zoom"
       class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
     >

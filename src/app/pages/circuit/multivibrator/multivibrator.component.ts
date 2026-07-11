@@ -111,7 +111,7 @@ export class MultivibratorComponent {
     ],
   };
 
-  onPartClick(part: PcbPart): void {
+  onPartClick(part: PcbPart | null): void {
     this.selectedPart.set(part);
   }
 }

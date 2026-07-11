@@ -20,40 +20,7 @@ const DRAG_THRESHOLD = 4;
   selector: 'app-pcb-preview',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './pcb-preview.component.html',
-  styles: [
-    `
-      /* Block host so width / max-width utilities on <app-pcb-preview> apply. */
-      :host {
-        display: block;
-      }
-      /* Dashed outline signals the marker is clickable. */
-      .pcb-marker {
-        fill: #90ffcd;
-        fill-opacity: 0;
-        stroke: #59b88d;
-        stroke-width: 2;
-        stroke-dasharray: 8 8;
-        stroke-linecap: round;
-        cursor: pointer;
-        transition:
-          fill-opacity 0.15s ease,
-          stroke-width 0.15s ease;
-      }
-      .pcb-marker:hover {
-        fill-opacity: 0.2;
-        stroke: #90ffcd;
-      }
-      /* Selected: solid, brighter, slightly thicker outline. */
-      .pcb-marker--selected {
-        fill-opacity: 0.4;
-        stroke-dasharray: none;
-        stroke-width: 3;
-        stroke: #00ff01;
-        fill: #00ff0138;
-        filter: drop-shadow(0 0 46px rgba(0, 255, 0));
-      }
-    `,
-  ],
+  styleUrls: ['./pcb-preview.component.css'],
 })
 export class PcbPreviewComponent {
   /** Image file name inside `basePath`, e.g. `'multivibrator.png'`. */
@@ -64,7 +31,7 @@ export class PcbPreviewComponent {
   config = input<PcbPreviewConfig>({ parts: [] });
 
   /** Emits the `name` of the part that was clicked/tapped. */
-  readonly partClick = output<PcbPart>();
+  readonly partClick = output<PcbPart | null>();
 
   /** Name of the currently highlighted part, set on tap. */
   readonly selected = signal<string | null>(null);
@@ -155,6 +122,8 @@ export class PcbPreviewComponent {
     this.zoom.set(MIN_ZOOM);
     this.panX.set(0);
     this.panY.set(0);
+    this.selected.set(null);
+    this.partClick.emit(null);
   }
 
   onWheel(event: WheelEvent): void {
