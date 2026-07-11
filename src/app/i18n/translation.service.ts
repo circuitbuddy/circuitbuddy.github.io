@@ -1,6 +1,7 @@
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { LANGS, Lang, TRANSLATIONS } from './translations';
+import { LANGS, Lang } from './types';
+import { TRANSLATIONS } from './translations';
 
 const STORAGE_KEY = 'cb-lang';
 
@@ -26,8 +27,8 @@ export class TranslationService {
 
   /** Translate a key for the active language, falling back to English then the key itself. */
   t(key: string): string {
-    const lang = this.lang();
-    return TRANSLATIONS[lang][key] ?? TRANSLATIONS.en[key] ?? key;
+    const entry = TRANSLATIONS[key];
+    return entry?.[this.lang()] ?? entry?.en ?? key;
   }
 
   setLang(lang: Lang): void {

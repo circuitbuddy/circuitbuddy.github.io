@@ -53,9 +53,10 @@
         class="h-35 md:h-50 mx-auto mb-4 drop-shadow-lg"
       />
 
-      <p class="font-display font-bold text-cream text-xl md:text-2xl italic">
-        {{ 'hero.tagline' | t }}
-      </p>
+      <p
+        class="font-display font-bold text-cream text-xl md:text-2xl italic"
+        [innerHTML]="'hero.tagline' | t"
+      ></p>
 
       <p class="max-w-xl mx-auto mt-6 text-base md:text-lg text-cream/90 leading-relaxed">
         {{ 'hero.subtitle' | t }}
