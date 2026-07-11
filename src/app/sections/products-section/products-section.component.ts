@@ -7,6 +7,7 @@ type Product = {
   title: string;
   description: string;
   price: number;
+  route?: string;
 };
 
 @Component({
@@ -23,6 +24,7 @@ export class ProductsSectionComponent {
       description:
         'The classic two-transistor LED blinker. Learn how capacitors and transistors take turns switching — the "hello world" of electronics.',
       price: 9,
+      route: '/circuit/multivibrator',
     },
     {
       pcbNo: '02',

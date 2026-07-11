@@ -1,8 +1,10 @@
 <article
+  [routerLink]="route() || null"
+  [class.cursor-pointer]="route()"
   class="bg-[#128572] border border-teal-trace/40 rounded-blob p-5 flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
 >
   <div class="flex items-start justify-between">
-    <span class="font-mono text-xs bg-teal-brand px-3 py-1 rounded-full"
+    <span class="font-mono text-xs bg-teal-brand text-gray-300 px-3 py-1 rounded-full"
       >PCB No: <b class="text-buddy-yellow">{{ pcbNo() }}</b></span
     >
     <span
@@ -20,6 +22,7 @@
     <span class="font-display font-800 text-2xl text-buddy-yellow">${{ price() }}</span>
     <a
       href="#contact"
+      (click)="$event.stopPropagation()"
       class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
       >Buy kit</a
     >
