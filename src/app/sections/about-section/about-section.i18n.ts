@@ -8,11 +8,11 @@ export const aboutTranslations = {
   },
   'about.p2': {
     en: 'You can start from simpler and <span class="font-semibold">Beginner friendly</span> ones and move towards <span class="font-semibold">Advanced</span> and more challenging circuits.',
-    si: 'ලේසිම එකේ ඉඳන් පියවරෙන් පියවර සංකීර්ණ පරිපථ වලට යනකන් පිළිවෙලට සකස් කරලා තියෙන්නේ. සර්කිට් හදන ගමන් ඒවා වැඩ කරන හැටි ගැන ඉගෙනගන්නත් පුළුවන්.',
+    si: 'සර්කිට් ලැයිස්තුව සකස් කරලා තියෙන්නේ අසීරුතාව අනුපිළිවෙලට යන විදිහට. සර්කිට් හදන ගමන් ඒවා වැඩ කරන හැටි ගැන ඉගෙනගන්නත් පුළුවන්.',
   },
   'about.p3': {
     en: 'Instructions, Schematics and Important details to learn, are available in <span class="font-semibold">circuitbuddy.github.io</span>.',
-    si: 'උපදෙස්, පරිපථ රූප සටහන් සහ ඉගෙනීමට වැදගත් විස්තර <span class="font-semibold">circuitbuddy.github.io</span> හි ඇත.',
+    si: 'ඔයාලට අවශ්‍ය උපදෙස්, පරිපථ රූප සටහන්, උපාංග වල විස්තර සහ ඒවා එකතුවෙලා වැඩකරන හැටි ගැන විස්තර අපේ වෙබ් පිටුවෙන් ගන්න පුළුවන්.',
   },
   'about.p4': {
     en: 'Circuit Buddy is sparked in <span class="font-semibold">Sri Lanka</span>.',
@@ -21,7 +21,7 @@ export const aboutTranslations = {
   'about.usbTitle': { en: 'Why Type-C USB ?', si: 'ඇයි මේ USB Type-C ?' },
   'about.usb1': {
     en: 'USB Type-C power adapters are <span class="font-semibold">safer to use</span>, a perfect option for experiments with <span class="font-semibold">extremely low risk</span> of getting hurt.',
-    si: 'අංක එක තමයි <span class="font-semibold">ආරක්ෂාව</span>. මේ ජාතියේ චාජරේකින් එන විදුලියෙන් අනතුරක් වෙන්න තියෙන ඉඩ ඉතාම අඩුයි.',
+    si: 'අංක එක තමයි <span class="font-semibold">ආරක්ෂාව</span>. මේ ජාතියේ චාජරේකින් එන විදුලියෙන් අනතුරක් වෙන්න තියෙන ඉඩ ගොඩක්ම අඩුයි.',
   },
   'about.usb2': {
     en: '<span class="font-semibold">Easier to use</span>, and no need to <span class="font-semibold">meddling with wires</span>, which is messy and unreliable. Just plug it in and watch it come alive.',
@@ -34,16 +34,16 @@ export const aboutTranslations = {
   'about.step1.title': { en: 'Pick a Circuit', si: 'සර්කිට් එකක් ගන්න' },
   'about.step1.body': {
     en: 'Choose a circuit below. Each one lists its parts and difficulty.',
-    si: 'පහතින් පරිපථයක් තෝරන්න. සෑම එකක්ම එහි කොටස් සහ දුෂ්කරතාවය දක්වයි.',
+    si: 'ඔයා සර්කිට් වලට අළුත් කෙනෙක් නම් අසීරුතාව අඩු එකක් තෝරගන්න.',
   },
-  'about.step2.title': { en: 'Solder the components', si: 'උපාංග ටික පාස්සගන්න' },
+  'about.step2.title': { en: 'Solder the components', si: 'එකලස් කරගන්න' },
   'about.step2.body': {
     en: 'Follow the illustrated guide — the silkscreen shows exactly where each part goes.',
-    si: 'රූපමය මාර්ගෝපදේශය අනුගමනය කරන්න — සිල්ක්ස්ක්‍රීන් මඟින් සෑම කොටසක්ම යා යුතු ස්ථානය නිවැරදිව පෙන්වයි.',
+    si: 'පරිපථ රූපසටහනට අනුව උපාංග ටික පාස්සගන්න. මතක ඇතුව short වෙච්ච තැන් තියෙනවද කියලා හොඳට බලන්න.',
   },
-  'about.step3.title': { en: 'Connect to power', si: 'Type-C චාජරේට සම්බන්ධ කරන්න' },
+  'about.step3.title': { en: 'Connect to power', si: 'චාජරේට සම්බන්ධ කරන්න' },
   'about.step3.body': {
     en: 'Plug into any USB-C charger, watch it come alive, then learn how it works.',
-    si: 'ඕනෑම USB-C චාජරයකට සම්බන්ධ කර, එය ක්‍රියාත්මක වනු බලා, පසුව එය ක්‍රියා කරන ආකාරය ඉගෙන ගන්න.',
+    si: 'ඕනෙම Type-C චාජරයකින් ඔයාගේ සර්කිට් එක ක්‍රියාත්මක කරගන්න පුළුවන්',
   },
 } satisfies TranslationFragment;

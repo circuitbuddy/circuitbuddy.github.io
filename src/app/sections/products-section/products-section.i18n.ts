@@ -4,13 +4,13 @@ export const productsTranslations = {
   'products.title': { en: 'Circuits List', si: 'පරිපථ ලැයිස්තුව' },
   'products.subtitle': {
     en: 'Each kit includes the PCB, all components, and a printed quick-start card.',
-    si: 'සෑම කට්ටලයකම PCB එක, සියලුම සංරචක, සහ මුද්‍රිත ඉක්මන් ආරම්භක කාඩ්පතක් ඇතුළත් වේ.',
+    si: 'හොඳම තත්ත්වයෙන් නිෂ්පාදිත සරිකිට් බෝඩ් එකක් එක්ක ඒකට අවශ්‍ය උපාංග සියල්ලම ඔබට ලැබෙනවා. සෑම උපාංගයකම ක්‍රියාකාරීත්වය අපි තහවුරු කරලයි එවන්නෙ.',
   },
-  'products.pcbNo': { en: 'PCB No:', si: 'PCB අංකය:' },
-  'products.buy': { en: 'Buy kit', si: 'කට්ටලය මිලට ගන්න' },
+  'products.pcbNo': { en: 'PCB No:', si: 'PCB No:' },
+  'products.buy': { en: 'Buy kit', si: 'වැඩිදුර කියවන්න' },
 
-  'level.beginner': { en: 'Beginner', si: 'ආරම්භක' },
-  'level.intermediate': { en: 'Intermediate', si: 'මධ්‍යම' },
+  'level.beginner': { en: 'Beginner', si: 'ලේසියි' },
+  'level.intermediate': { en: 'Intermediate', si: 'ටිකක් අසීරුයි' },
 
   'product.multivibrator.title': { en: 'Multivibrator Circuit', si: 'මල්ටිවයිබ්‍රේටර් පරිපථය' },
   'product.multivibrator.desc': {
@@ -22,7 +22,10 @@ export const productsTranslations = {
     en: 'Turn an LED on with a fingertip. A gentle introduction to transistor amplification and how tiny signals control bigger ones.',
     si: 'ඇඟිලි තුඩකින් LED එකක් දල්වන්න. ට්‍රාන්සිස්ටර විස්තාරණය සහ කුඩා සංඥා විශාල ඒවා පාලනය කරන ආකාරය පිළිබඳ මෘදු හැඳින්වීමක්.',
   },
-  'product.nightlight.title': { en: 'Dark-Activated Night Light', si: 'අඳුරේ දැල්වෙන රාත්‍රී ලාම්පුව' },
+  'product.nightlight.title': {
+    en: 'Dark-Activated Night Light',
+    si: 'අඳුරේ දැල්වෙන රාත්‍රී ලාම්පුව',
+  },
   'product.nightlight.desc': {
     en: 'An LDR senses the dark and switches the LED on automatically. Your first sensor circuit.',
     si: 'LDR එකක් අඳුර හඳුනාගෙන LED එක ස්වයංක්‍රීයව දල්වයි. ඔබේ පළමු සංවේදක පරිපථය.',
