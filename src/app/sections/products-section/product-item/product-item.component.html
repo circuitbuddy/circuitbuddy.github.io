@@ -5,18 +5,18 @@
 >
   <div class="flex items-start justify-between">
     <span class="font-mono text-xs bg-teal-brand text-gray-300 px-3 py-1 rounded-full"
-      >PCB No: <b class="text-buddy-yellow">{{ pcbNo() }}</b></span
+      >{{ 'products.pcbNo' | t }} <b class="text-buddy-yellow">{{ pcbNo() }}</b></span
     >
     <span
       class="text-xs font-bold text-teal-deep px-3 py-1 rounded-full"
       [class.bg-buddy-yellow]="level() === 'Beginner'"
       [class.bg-teal-light]="level() !== 'Beginner'"
-      >{{ level() }}</span
+      >{{ (level() === 'Beginner' ? 'level.beginner' : 'level.intermediate') | t }}</span
     >
   </div>
 
-  <h3 class="font-display font-bold text-2xl mt-4 text-cream">{{ title() }}</h3>
-  <p class="text-sm text-cream/80 mt-2 flex-1">{{ description() }}</p>
+  <h3 class="font-display font-bold text-2xl mt-4 text-cream">{{ titleKey() | t }}</h3>
+  <p class="text-sm text-cream/80 mt-2 flex-1">{{ descKey() | t }}</p>
 
   <div class="mt-5 flex items-center justify-between">
     <span class="font-display font-800 text-2xl text-buddy-yellow">${{ price() }}</span>
@@ -24,7 +24,7 @@
       href="#contact"
       (click)="$event.stopPropagation()"
       class="bg-buddy-yellow text-teal-deep font-bold px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
-      >Buy kit</a
+      >{{ 'products.buy' | t }}</a
     >
   </div>
 </article>

@@ -10,7 +10,7 @@
       id="menuBtn"
       type="button"
       class="md:hidden p-2 rounded-lg text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-      [attr.aria-label]="isMobileMenuOpen ? 'Close menu' : 'Open menu'"
+      [attr.aria-label]="(isMobileMenuOpen ? 'nav.closeMenu' : 'nav.openMenu') | t"
       [attr.aria-expanded]="isMobileMenuOpen"
       (click)="toggleMobileMenu()"
     >
@@ -21,21 +21,29 @@
 
     <!-- Desktop links -->
     <ul class="hidden md:flex items-center gap-6 font-bold">
-      <li><a href="#about" class="text-white hover:text-yellow-400 transition-colors">About</a></li>
       <li>
-        <a href="#circuits" class="text-white hover:text-yellow-400 transition-colors">Circuits</a>
+        <a href="#about" class="text-white hover:text-yellow-400 transition-colors">{{
+          'nav.about' | t
+        }}</a>
       </li>
       <li>
-        <a href="#contact" class="text-white hover:text-yellow-400 transition-colors">Contact</a>
+        <a href="#circuits" class="text-white hover:text-yellow-400 transition-colors">{{
+          'nav.circuits' | t
+        }}</a>
       </li>
       <li>
+        <a href="#contact" class="text-white hover:text-yellow-400 transition-colors">{{
+          'nav.contact' | t
+        }}</a>
+      </li>
+      <!-- <li>
         <a
           href="#circuits"
           class="bg-yellow-400 text-teal-deep px-4 py-2 rounded-full font-display font-bold hover:bg-buddy-amber transition-colors"
         >
-          Shop kits
+          {{ 'nav.shop' | t }}
         </a>
-      </li>
+      </li> -->
     </ul>
   </nav>
 
@@ -50,7 +58,7 @@
         href="#about"
         class="block py-3 border-b text-gray-200 border-teal-trace/30"
         (click)="closeMobileMenu()"
-        >About</a
+        >{{ 'nav.about' | t }}</a
       >
     </li>
     <li>
@@ -58,11 +66,13 @@
         href="#circuits"
         class="block py-3 border-b text-gray-200 border-teal-trace/30"
         (click)="closeMobileMenu()"
-        >Circuits</a
+        >{{ 'nav.circuits' | t }}</a
       >
     </li>
     <li>
-      <a href="#contact" class="block py-3 text-gray-200" (click)="closeMobileMenu()">Contact</a>
+      <a href="#contact" class="block py-3 text-gray-200" (click)="closeMobileMenu()">{{
+        'nav.contact' | t
+      }}</a>
     </li>
   </ul>
 </header>

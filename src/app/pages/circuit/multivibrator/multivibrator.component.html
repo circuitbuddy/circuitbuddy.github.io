@@ -23,26 +23,19 @@
         >
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
         </svg>
-        Back
+        {{ 'circuit.back' | t }}
       </a>
 
       <p class="font-mono text-sm tracking-widest uppercase text-buddy-yellow mt-8 mb-2">
         // circuit
       </p>
-      <h1 class="font-display font-800 text-4xl md:text-5xl text-cream">Multivibrator Circuit</h1>
+      <h1 class="font-display font-800 text-4xl md:text-5xl text-cream">
+        {{ 'product.multivibrator.title' | t }}
+      </h1>
 
-      <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-        An <b class="text-buddy-yellow">astable multivibrator</b> with two LEDs — the classic
-        two-transistor circuit that never settles down. It has no stable state, so it flips back and
-        forth on its own, switching the two LEDs on and off in a steady, alternating blink.
-      </p>
+      <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl" [innerHTML]="'circuit.multivibrator.p1' | t"></p>
 
-      <p class="mt-4 text-base text-cream/80 leading-relaxed max-w-2xl">
-        The rhythm comes from two capacitors charging and discharging in turn: each one holds a
-        transistor off just long enough for its partner to light up, then they swap. It's the
-        friendliest way to see timing, feedback, and transistor switching in action — the "hello
-        world" of hands-on electronics.
-      </p>
+      <p class="mt-4 text-base text-cream/80 leading-relaxed max-w-2xl" [innerHTML]="'circuit.multivibrator.p2' | t"></p>
     </div>
   </div>
 </main>

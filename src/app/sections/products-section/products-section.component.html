@@ -10,18 +10,16 @@
   <div class="w-full bg-[#45545394]">
     <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
       <p class="font-mono text-sm tracking-widest uppercase text-buddy-yellow mb-2">// shop</p>
-      <h2 class="font-display font-800 text-3xl md:text-4xl text-cream">Circuits List</h2>
-      <p class="mt-2 text-cream/80 max-w-xl">
-        Each kit includes the PCB, all components, and a printed quick-start card.
-      </p>
+      <h2 class="font-display font-800 text-3xl md:text-4xl text-cream">{{ 'products.title' | t }}</h2>
+      <p class="mt-2 text-cream/80 max-w-xl">{{ 'products.subtitle' | t }}</p>
 
       <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         @for (product of products; track product.pcbNo) {
           <app-product-item
             [pcbNo]="product.pcbNo"
             [level]="product.level"
-            [title]="product.title"
-            [description]="product.description"
+            [titleKey]="product.titleKey"
+            [descKey]="product.descKey"
             [price]="product.price"
             [route]="product.route"
           ></app-product-item>

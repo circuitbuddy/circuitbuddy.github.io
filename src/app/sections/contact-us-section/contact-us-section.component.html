@@ -2,21 +2,19 @@
 <section id="contact" class="border-t-4 border-buddy-yellow bg-[#dbac41]">
   <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
     <p class="font-mono text-sm tracking-widest uppercase text-white mb-2">// contact</p>
-    <h2 class="font-display font-800 text-3xl md:text-4xl text-white">Get in touch</h2>
-    <p class="mt-2 text-white/95 max-w-xl">
-      Reach to us if you are interested in buying our circuits.
-    </p>
+    <h2 class="font-display font-800 text-3xl md:text-4xl text-white">{{ 'contact.title' | t }}</h2>
+    <p class="mt-2 text-white/95 max-w-xl">{{ 'contact.subtitle' | t }}</p>
 
     <div class="mt-4 flex flex-wrap gap-2">
       <span
         class="inline-flex items-center gap-1.5 rounded-full bg-buddy-yellow text-teal-deep font-mono text-sm font-bold tracking-widest uppercase px-6 py-2 shadow-sm"
       >
-        For Resellers
+        {{ 'contact.resellers' | t }}
       </span>
       <span
         class="inline-flex items-center gap-1.5 rounded-full bg-buddy-yellow text-teal-deep font-mono text-sm font-bold tracking-widest uppercase px-6 py-2 shadow-sm"
       >
-        Bulk Orders
+        {{ 'contact.bulk' | t }}
       </span>
     </div>
 
@@ -33,7 +31,7 @@
           </svg>
         </span>
         <div>
-          <p class="font-bold text-white">Email</p>
+          <p class="font-bold text-white">{{ 'contact.email' | t }}</p>
           <p class="text-sm text-white/90 font-mono">circuitbuddysl@gmail.com</p>
         </div>
       </a>
@@ -54,7 +52,7 @@
           </svg>
         </span>
         <div>
-          <p class="font-bold text-white">WhatsApp</p>
+          <p class="font-bold text-white">{{ 'contact.whatsapp' | t }}</p>
           <p class="text-sm text-white/90 font-mono">+94 77 000 0000</p>
         </div>
       </a>

@@ -20,6 +20,16 @@
   --radius-blob: 1.75rem;
 }
 
+/* When the site is in Sinhala, swap in Sinhala-capable fonts. Tailwind's
+   font utilities resolve these CSS variables at use-site, so overriding them
+   on the <html> element restyles the whole tree. Latin fonts are kept as
+   fallbacks so numbers, emails and brand names still look right. */
+html[lang='si'] {
+  --font-display: 'Noto Sans Sinhala', 'Baloo 2', cursive;
+  --font-body: 'Noto Sans Sinhala', Nunito, sans-serif;
+  --font-mono: 'Space Mono', 'Noto Sans Sinhala', monospace;
+}
+
 /* Circuit-trace background pattern, drawn to echo the package artwork */
 
 .circuit-bg-dark {

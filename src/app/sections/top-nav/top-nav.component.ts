@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { TranslatePipe } from '../../i18n/translate.pipe';
 
 @Component({
   selector: 'app-top-nav',
+  imports: [TranslatePipe],
   templateUrl: './top-nav.component.html',
 })
 export class TopNavComponent {
