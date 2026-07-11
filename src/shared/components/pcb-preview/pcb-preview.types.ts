@@ -8,6 +8,7 @@
 export type PcbPartShape = 'circle' | 'rect';
 
 interface PcbPartBase {
+  id: string;
   /** Identifier emitted through `(partClick)` when the marker is tapped. */
   name: string;
   /** Optional tooltip text; falls back to `name`. */

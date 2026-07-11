@@ -8,10 +8,10 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { PcbPreviewConfig } from './pcb-preview.types';
+import { PcbPart, PcbPreviewConfig } from './pcb-preview.types';
 
 const MIN_ZOOM = 1;
-const MAX_ZOOM = 5;
+const MAX_ZOOM = 2;
 const ZOOM_STEP = 0.5;
 /** Movement (px) before a press is treated as a pan instead of a tap. */
 const DRAG_THRESHOLD = 4;
@@ -30,8 +30,8 @@ const DRAG_THRESHOLD = 4;
       .pcb-marker {
         fill: #90ffcd;
         fill-opacity: 0;
-        stroke: #90ffcd;
-        stroke-width: 3;
+        stroke: #59b88d;
+        stroke-width: 2;
         stroke-dasharray: 8 8;
         stroke-linecap: round;
         cursor: pointer;
@@ -40,15 +40,17 @@ const DRAG_THRESHOLD = 4;
           stroke-width 0.15s ease;
       }
       .pcb-marker:hover {
-        fill-opacity: 0.25;
+        fill-opacity: 0.2;
+        stroke: #90ffcd;
       }
       /* Selected: solid, brighter, slightly thicker outline. */
       .pcb-marker--selected {
-        fill-opacity: 0.2;
+        fill-opacity: 0.4;
         stroke-dasharray: none;
         stroke-width: 3;
         stroke: #00ff01;
         fill: #00ff0138;
+        filter: drop-shadow(0 0 46px rgba(0, 255, 0));
       }
     `,
   ],
@@ -62,7 +64,7 @@ export class PcbPreviewComponent {
   config = input<PcbPreviewConfig>({ parts: [] });
 
   /** Emits the `name` of the part that was clicked/tapped. */
-  readonly partClick = output<string>();
+  readonly partClick = output<PcbPart>();
 
   /** Name of the currently highlighted part, set on tap. */
   readonly selected = signal<string | null>(null);
@@ -83,10 +85,12 @@ export class PcbPreviewComponent {
   readonly canZoomOut = computed(() => this.zoom() > MIN_ZOOM);
   readonly canPan = computed(() => this.zoom() > MIN_ZOOM);
 
-  /** Single transform shared by the image and overlay so they stay aligned. */
-  readonly transform = computed(
-    () => `translate(${this.panX()}px, ${this.panY()}px) scale(${this.zoom()})`,
-  );
+  /**
+   * Pan only — zoom is applied via the stage's layout size (see template) so the
+   * browser re-rasterises the image from its full resolution instead of scaling
+   * an already-rendered (blurry) bitmap.
+   */
+  readonly transform = computed(() => `translate(${this.panX()}px, ${this.panY()}px)`);
 
   /** SVG viewBox matches the natural image so part coords land exactly. */
   readonly viewBox = computed(() => {
@@ -103,8 +107,18 @@ export class PcbPreviewComponent {
   readonly markers = computed(() =>
     this.config().parts.map((p) =>
       p.shape === 'circle'
-        ? { kind: 'circle' as const, name: p.name, label: p.label, cx: p.x, cy: p.y, r: p.radius }
+        ? {
+            id: p.id,
+            kind: 'circle' as const,
+            name: p.name,
+            label: p.label,
+            cx: p.x,
+            cy: p.y,
+            r: p.radius,
+            part: p,
+          }
         : {
+            id: p.id,
             kind: 'rect' as const,
             name: p.name,
             label: p.label,
@@ -112,6 +126,7 @@ export class PcbPreviewComponent {
             y: p.y - p.height / 2,
             width: p.width,
             height: p.height,
+            part: p,
           },
     ),
   );
@@ -143,8 +158,8 @@ export class PcbPreviewComponent {
   }
 
   onWheel(event: WheelEvent): void {
-    event.preventDefault();
-    this.setZoom(this.zoom() + (event.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP));
+    // event.preventDefault();
+    // this.setZoom(this.zoom() + (event.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP));
   }
 
   onPointerDown(event: PointerEvent): void {
@@ -184,11 +199,11 @@ export class PcbPreviewComponent {
     if (vp.hasPointerCapture(event.pointerId)) vp.releasePointerCapture(event.pointerId);
   }
 
-  onPartClick(name: string): void {
+  onPartClick(part: PcbPart): void {
     // Suppress the click that ends a drag gesture.
     if (this.moved) return;
-    this.selected.set(name);
-    this.partClick.emit(name);
+    this.selected.set(part.id);
+    this.partClick.emit(part);
   }
 
   /** Clamp to [MIN, MAX] and zoom toward the viewport centre. */

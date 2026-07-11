@@ -59,9 +59,13 @@ describe('PcbPreviewComponent', () => {
     expect(c.canZoomOut()).toBe(true);
     expect(c.canPan()).toBe(true);
 
+    // Zoom in past the cap: it clamps and can't go further.
     for (let i = 0; i < 20; i++) c.zoomIn();
-    expect(c.zoom()).toBe(5); // clamped to MAX_ZOOM
     expect(c.canZoomIn()).toBe(false);
+    const capped = c.zoom();
+    expect(capped).toBeGreaterThan(1);
+    c.zoomIn();
+    expect(c.zoom()).toBe(capped);
 
     c.reset();
     expect(c.zoom()).toBe(1);

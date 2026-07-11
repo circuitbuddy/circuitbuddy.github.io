@@ -30,6 +30,13 @@ html[lang='si'] {
   --font-mono: 'Space Mono', 'Noto Sans Sinhala', monospace;
 }
 
+/* Offset in-page scrolls so section headings clear the sticky nav. */
+#about,
+#circuits,
+#contact {
+  scroll-margin-top: 5rem;
+}
+
 /* Circuit-trace background pattern, drawn to echo the package artwork */
 
 .circuit-bg-dark {

@@ -1,7 +1,7 @@
 <!-- ============ NAV ============ -->
 <header class="sticky top-0 z-50 bg-[#255f5d] backdrop-blur border-b-4 border-yellow-400">
   <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-    <a href="/" class="flex items-center gap-2" aria-label="Circuit Buddy home">
+    <a routerLink="/" class="flex items-center gap-2" aria-label="Circuit Buddy home">
       <img src="/assets/circuit-buddy-web-logo.png" alt="Circuit Buddy logo" class="h-10" />
     </a>
 
@@ -22,23 +22,24 @@
     <!-- Desktop links -->
     <ul class="hidden md:flex items-center gap-6 font-bold">
       <li>
-        <a href="#about" class="text-white hover:text-yellow-400 transition-colors">{{
+        <a href="#" appScrollTo="about" class="text-white hover:text-yellow-400 transition-colors">{{
           'nav.about' | t
         }}</a>
       </li>
       <li>
-        <a href="#circuits" class="text-white hover:text-yellow-400 transition-colors">{{
+        <a href="#" appScrollTo="circuits" class="text-white hover:text-yellow-400 transition-colors">{{
           'nav.circuits' | t
         }}</a>
       </li>
       <li>
-        <a href="#contact" class="text-white hover:text-yellow-400 transition-colors">{{
+        <a href="#" appScrollTo="contact" class="text-white hover:text-yellow-400 transition-colors">{{
           'nav.contact' | t
         }}</a>
       </li>
       <!-- <li>
         <a
-          href="#circuits"
+          href="#"
+          appScrollTo="circuits"
           class="bg-yellow-400 text-teal-deep px-4 py-2 rounded-full font-display font-bold hover:bg-buddy-amber transition-colors"
         >
           {{ 'nav.shop' | t }}
@@ -55,7 +56,8 @@
   >
     <li>
       <a
-        href="#about"
+        href="#"
+        appScrollTo="about"
         class="block py-3 border-b text-gray-200 border-teal-trace/30"
         (click)="closeMobileMenu()"
         >{{ 'nav.about' | t }}</a
@@ -63,14 +65,15 @@
     </li>
     <li>
       <a
-        href="#circuits"
+        href="#"
+        appScrollTo="circuits"
         class="block py-3 border-b text-gray-200 border-teal-trace/30"
         (click)="closeMobileMenu()"
         >{{ 'nav.circuits' | t }}</a
       >
     </li>
     <li>
-      <a href="#contact" class="block py-3 text-gray-200" (click)="closeMobileMenu()">{{
+      <a href="#" appScrollTo="contact" class="block py-3 text-gray-200" (click)="closeMobileMenu()">{{
         'nav.contact' | t
       }}</a>
     </li>

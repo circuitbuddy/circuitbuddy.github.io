@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 
@@ -8,7 +8,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(
       routes,
-      withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' })
+      // Hash-based URLs (e.g. /#/circuit/multivibrator) so deep links work on
+      // GitHub Pages' static hosting without a server-side SPA fallback.
+      withHashLocation(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
     ),
   ],
 };

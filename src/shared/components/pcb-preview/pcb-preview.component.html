@@ -2,7 +2,7 @@
   <!-- Viewport: clips the zoomed/panned content -->
   <div
     #viewport
-    class="relative w-full overflow-hidden rounded-blob border border-teal-trace/40 bg-teal-deep/40 touch-none"
+    class="relative w-full overflow-hidden rounded-xl bg-teal-deep/30 border border-teal-deep/50 touch-none"
     [class.cursor-grab]="canPan() && !isDragging()"
     [class.cursor-grabbing]="isDragging()"
     [style.aspect-ratio]="aspectRatio()"
@@ -12,9 +12,12 @@
     (pointercancel)="onPointerUp($event)"
     (wheel)="onWheel($event)"
   >
-    <!-- Stage: image + overlay share ONE transform, so markers stay aligned -->
+    <!-- Stage: image + overlay share one box. Zoom changes the box SIZE (so the
+         browser re-samples the full-res image and stays crisp); translate pans. -->
     <div
-      class="absolute inset-0 origin-top-left will-change-transform"
+      class="absolute left-0 top-0 origin-top-left will-change-transform"
+      [style.width.%]="zoom() * 100"
+      [style.height.%]="zoom() * 100"
       [style.transform]="transform()"
     >
       <img
@@ -36,26 +39,26 @@
             @if (m.kind === 'circle') {
               <circle
                 class="pcb-marker"
-                [class.pcb-marker--selected]="selected() === m.name"
+                [class.pcb-marker--selected]="selected() === m.id"
                 [attr.cx]="m.cx"
                 [attr.cy]="m.cy"
                 [attr.r]="m.r"
                 vector-effect="non-scaling-stroke"
-                (click)="onPartClick(m.name)"
+                (click)="onPartClick(m.part)"
               >
                 <title>{{ m.label || m.name }}</title>
               </circle>
             } @else {
               <rect
                 class="pcb-marker"
-                [class.pcb-marker--selected]="selected() === m.name"
+                [class.pcb-marker--selected]="selected() === m.id"
                 [attr.x]="m.x"
                 [attr.y]="m.y"
                 [attr.width]="m.width"
                 [attr.height]="m.height"
                 rx="14"
                 vector-effect="non-scaling-stroke"
-                (click)="onPartClick(m.name)"
+                (click)="onPartClick(m.part)"
               >
                 <title>{{ m.label || m.name }}</title>
               </rect>
@@ -73,7 +76,7 @@
       (click)="zoomIn()"
       [disabled]="!canZoomIn()"
       aria-label="Zoom in"
-      class="grid h-10 w-10 place-items-center rounded-full border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
     >
       <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
         <path stroke-linecap="round" d="M12 5v14M5 12h14" />
@@ -84,7 +87,7 @@
       (click)="zoomOut()"
       [disabled]="!canZoomOut()"
       aria-label="Zoom out"
-      class="grid h-10 w-10 place-items-center rounded-full border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
     >
       <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
         <path stroke-linecap="round" d="M5 12h14" />
@@ -95,7 +98,7 @@
       (click)="reset()"
       [disabled]="!canZoomOut()"
       aria-label="Reset zoom"
-      class="grid h-10 w-10 place-items-center rounded-full border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
     >
       <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
         <path
