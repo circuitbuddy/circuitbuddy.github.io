@@ -8,28 +8,38 @@
 >
   <div class="w-full bg-[#237b796e] min-h-[100vh]">
     <div class="max-w-4xl mx-auto px-6 py-14 md:py-20">
-      <!-- Back link -->
-      <a
-        href="#"
-        appScrollTo="circuits"
-        class="inline-flex items-center gap-2 font-mono text-lg text-buddy-yellow hover:text-buddy-amber transition-colors"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          viewBox="0 0 24 24"
+      <div class="flex flex-row align-center w-full">
+        <!-- Back link -->
+        <a
+          href="#"
+          appScrollTo="circuits"
+          class="inline-flex items-center gap-2 font-mono text-lg text-buddy-yellow hover:text-buddy-amber transition-colors"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-        {{ 'circuit.back' | t }}
-      </a>
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          {{ 'circuit.back' | t }}
+        </a>
+        <div class="flex-1"></div>
+        <a
+          href="#"
+          appscrollto="circuits"
+          class="w-auto bg-yellow-400 text-teal-deep font-display font-bold text-base px-8 py-3 rounded-full shadow-lg hover:bg-buddy-amber hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-4 focus:ring-yellow-400/50"
+        >
+          මිලදී ගන්න
+        </a>
+      </div>
 
       <p class="font-mono text-sm tracking-widest uppercase text-buddy-yellow mt-8 mb-2">
         // circuit
       </p>
-      <h1 class="font-display font-800 text-4xl md:text-5xl text-cream">
+      <h1 class="font-display font-800 text-3xl md:text-4xl text-cream">
         {{ 'circuit.multivibrator.title' | t }}
       </h1>
 

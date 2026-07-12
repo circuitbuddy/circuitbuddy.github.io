@@ -36,7 +36,7 @@ export class TranslationService {
   }
 
   toggle(): void {
-    this.lang.set(this.lang() === 'en' ? 'si' : 'en');
+    this.lang.set(this.lang() === 'en' ? 'si' : 'si');
   }
 
   private readInitialLang(): Lang {
@@ -46,6 +46,6 @@ export class TranslationService {
     } catch {
       // ignore
     }
-    return 'en';
+    return 'si';
   }
 }
