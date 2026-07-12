@@ -2,7 +2,9 @@
   <!-- Viewport: clips the zoomed/panned content -->
   <div
     #viewport
-    class="relative w-full overflow-hidden rounded-xl bg-teal-deep/30 border border-teal-deep/50 touch-none"
+    class="relative w-full overflow-hidden rounded-xl bg-teal-deep/30 border border-teal-deep/50"
+    [class.touch-none]="canPan()"
+    [class.touch-pan-y]="!canPan()"
     [class.cursor-grab]="canPan() && !isDragging()"
     [class.cursor-grabbing]="isDragging()"
     [style.aspect-ratio]="aspectRatio()"
