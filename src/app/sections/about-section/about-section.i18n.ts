@@ -8,11 +8,11 @@ export const aboutTranslations = {
   },
   'about.p2': {
     en: 'You can start from simpler and <span class="font-semibold">Beginner friendly</span> ones and move towards <span class="font-semibold">Advanced</span> and more challenging circuits.',
-    si: 'සර්කිට් ලැයිස්තුව සකස් කරලා තියෙන්නේ අසීරුතාව අනුපිළිවෙලට යන විදිහට. සර්කිට් හදන ගමන් ඒවා වැඩ කරන හැටි ගැන ඉගෙනගන්නත් පුළුවන්.',
+    si: 'ඔයාලට අපෙන් සර්කිට් කට්ටල මිලදී ගන්න, ඒවා එකලස් කරලා බලන්න, සහ ඒවා වැඩ කරන හැටි ගැන ඉගෙනගන්න පුළුවන්.',
   },
   'about.p3': {
     en: 'Instructions, Schematics and Important details to learn, are available in <span class="font-semibold">circuitbuddy.github.io</span>.',
-    si: 'ඔයාලට අවශ්‍ය උපදෙස්, පරිපථ රූප සටහන්, උපාංග වල විස්තර සහ ඒවා එකතුවෙලා වැඩකරන හැටි ගැන විස්තර අපේ වෙබ් පිටුවෙන් ගන්න පුළුවන්.',
+    si: 'එකලස් කරන්න උපදෙස්, පරිපථ රූප සටහන්, උපාංග වල විස්තර අපේ වෙබ් පිටුවෙන් ඔයාලට ගන්න පුළුවන්.',
   },
   'about.p4': {
     en: 'Circuit Buddy is sparked in <span class="font-semibold">Sri Lanka</span>.',
@@ -31,15 +31,15 @@ export const aboutTranslations = {
     en: 'Type-C has become the global standard for power adapters. <span class="font-semibold">Wide availability</span> allows you to power up your circuit anywhere',
     si: 'දැන් <span class="font-semibold">කොහේ ගියත්</span> Type-C චාජරයක් හොයාගන්න පුළුවන්. සර්කිට් එකට කියලා වෙනම බැට්රි කෑලි තියාගෙන ඉන්න ඕනෙ නෑ!',
   },
-  'about.step1.title': { en: 'Pick a Circuit', si: 'සර්කිට් එකක් ගන්න' },
+  'about.step1.title': { en: 'Pick a Circuit', si: 'සර්කිට් එකක් තෝරගන්න' },
   'about.step1.body': {
     en: 'Choose a circuit below. Each one lists its parts and difficulty.',
-    si: 'ඔයා සර්කිට් වලට අළුත් කෙනෙක් නම් අසීරුතාව අඩු එකක් තෝරගන්න.',
+    si: 'ඔයා සර්කිට් වලට අළුත් කෙනෙක් නම් අසීරුතාව අඩු එකක් තෝරගන්න. අපේ පරිපථ ලැයිස්තුව හදලා තියෙන්නෙම ලේසිම එකේ ඉඳන් පියවරෙන් පියවර ඉහලට යන විදිහට.',
   },
   'about.step2.title': { en: 'Solder the components', si: 'එකලස් කරගන්න' },
   'about.step2.body': {
     en: 'Follow the illustrated guide — the silkscreen shows exactly where each part goes.',
-    si: 'පරිපථ රූපසටහනට අනුව උපාංග ටික පාස්සගන්න. මතක ඇතුව short වෙච්ච තැන් තියෙනවද කියලා හොඳට බලන්න.',
+    si: 'පරිපථ රූපසටහනට අනුව උපාංග ටික පාස්සගන්න. මතක ඇතුව short වෙච්ච තැන් තියෙනවද කියලා හොඳට බලන්න. අනවශ්‍ය තැන් වලින් විදුලිය කාන්දු උනොත් ඔයාගේ උපාංග ටික පිච්චෙන්න පුළුවන්!',
   },
   'about.step3.title': { en: 'Connect to power', si: 'චාජරේට සම්බන්ධ කරන්න' },
   'about.step3.body': {
