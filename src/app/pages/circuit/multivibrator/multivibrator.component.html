@@ -56,10 +56,12 @@
       <!-- Interactive PCB preview: zoom, drag to pan, tap a part -->
       <div class="mt-8">
         <app-pcb-preview
-          image="multivibrator.png"
+          basePath="/assets/pcb-images/multivibrator/"
+          image="pcb.png"
+          componentsImage="components.png"
           [config]="pcbConfig"
           (partClick)="onPartClick($event)"
-          class="max-w-lg"
+          class="max-w-120"
         ></app-pcb-preview>
 
         <p class="mt-5 text-base text-cream">

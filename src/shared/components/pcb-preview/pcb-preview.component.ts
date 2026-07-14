@@ -25,6 +25,12 @@ const DRAG_THRESHOLD = 4;
 export class PcbPreviewComponent {
   /** Image file name inside `basePath`, e.g. `'multivibrator.png'`. */
   image = input.required<string>();
+  /**
+   * Optional second image (also inside `basePath`) that shows the assembled
+   * board with its components. When set, a toggle button appears that swaps
+   * between this and `image` (the bare PCB).
+   */
+  componentsImage = input<string | null>(null);
   /** Directory the image lives in. */
   basePath = input<string>('/assets/pcb-images/');
   /** Clickable part markers, positioned in the image's natural pixel space. */
@@ -38,7 +44,26 @@ export class PcbPreviewComponent {
 
   private readonly viewport = viewChild.required<ElementRef<HTMLElement>>('viewport');
 
-  readonly imageSrc = computed(() => `${this.basePath()}${this.image()}`);
+  /** When true (and a `componentsImage` exists) the assembled view is shown. */
+  readonly showComponents = signal(true);
+  /** The toggle button is only offered when a second image is available. */
+  readonly canToggle = computed(() => !!this.componentsImage());
+
+  readonly imageSrc = computed(() => {
+    const components = this.componentsImage();
+    const file = this.showComponents() && components ? components : this.image();
+    return `${this.basePath()}${file}`;
+  });
+
+  /** Full class list for the toggle button, reflecting its on/off state. */
+  readonly toggleClass = computed(() => {
+    const base =
+      'grid h-10 w-10 place-items-center rounded-full cursor-pointer border shadow-md transition-colors';
+    const variant = this.showComponents()
+      ? 'border-yellow-400 bg-yellow-400 text-teal-deep hover:bg-buddy-amber'
+      : 'border-teal-trace/60 bg-teal-deep/90 text-cream hover:bg-teal-deep';
+    return `${base} ${variant}`;
+  });
 
   /** Natural pixel size of the loaded image; `null` until it loads. */
   readonly naturalSize = signal<{ w: number; h: number } | null>(null);
@@ -124,6 +149,12 @@ export class PcbPreviewComponent {
     this.panY.set(0);
     this.selected.set(null);
     this.partClick.emit(null);
+  }
+
+  /** Swap between the components view and the bare PCB (zoom/pan are kept). */
+  toggleComponents(): void {
+    if (!this.canToggle()) return;
+    this.showComponents.update((v) => !v);
   }
 
   onWheel(event: WheelEvent): void {
