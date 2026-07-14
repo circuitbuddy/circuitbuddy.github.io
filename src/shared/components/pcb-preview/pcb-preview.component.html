@@ -73,44 +73,6 @@
 
   <!-- Zoom controls (below the preview) -->
   <div class="mt-3 flex flex-row gap-2">
-    <button
-      type="button"
-      (click)="zoomIn()"
-      [disabled]="!canZoomIn()"
-      aria-label="Zoom in"
-      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
-    >
-      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M12 5v14M5 12h14" />
-      </svg>
-    </button>
-    <button
-      type="button"
-      (click)="zoomOut()"
-      [disabled]="!canZoomOut()"
-      aria-label="Zoom out"
-      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
-    >
-      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M5 12h14" />
-      </svg>
-    </button>
-    <button
-      type="button"
-      (click)="reset()"
-      [disabled]="!canZoomOut() && !selected()"
-      aria-label="Reset zoom"
-      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
-    >
-      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M4 9a8 8 0 0113.7-3.7L20 8m0-4v4h-4M20 15a8 8 0 01-13.7 3.7L4 16m0 4v-4h4"
-        />
-      </svg>
-    </button>
-
     <!-- Toggle between the assembled (components) view and the bare PCB. -->
     @if (canToggle()) {
       <button
@@ -120,14 +82,76 @@
         [attr.aria-label]="showComponents() ? 'Show bare PCB' : 'Show components'"
         [class]="toggleClass()"
       >
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <rect x="7" y="7" width="10" height="10" rx="1.5" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          [attr.fill]="toggleIconColor()"
+        >
           <path
-            stroke-linecap="round"
-            d="M10 4v3M14 4v3M10 17v3M14 17v3M4 10h3M4 14h3M17 10h3M17 14h3"
+            d="M360-360v-240h240v240H360Zm80-80h80v-80h-80v80Zm-80 320v-80h-80q-33 0-56.5-23.5T200-280v-80h-80v-80h80v-80h-80v-80h80v-80q0-33 23.5-56.5T280-760h80v-80h80v80h80v-80h80v80h80q33 0 56.5 23.5T760-680v80h80v80h-80v80h80v80h-80v80q0 33-23.5 56.5T680-200h-80v80h-80v-80h-80v80h-80Zm320-160v-400H280v400h400ZM480-480Z"
           />
         </svg>
       </button>
     }
+
+    <button
+      type="button"
+      (click)="zoomIn()"
+      [disabled]="!canZoomIn()"
+      aria-label="Zoom in"
+      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#fff9e8"
+      >
+        <path
+          d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Zm-40-60v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"
+        />
+      </svg>
+    </button>
+    <button
+      type="button"
+      (click)="zoomOut()"
+      [disabled]="!canZoomOut()"
+      aria-label="Zoom out"
+      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#fff9e8"
+      >
+        <path
+          d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400ZM280-540v-80h200v80H280Z"
+        />
+      </svg>
+    </button>
+    <button
+      type="button"
+      (click)="reset()"
+      [disabled]="!canZoomOut() && !selected()"
+      aria-label="Reset zoom"
+      class="grid h-10 w-10 place-items-center rounded-full cursor-pointer border border-teal-trace/60 bg-teal-deep/90 text-cream shadow-md transition-colors hover:bg-teal-deep disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#fff9e8"
+      >
+        <path
+          d="M480-400q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0 280q-139 0-241-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Z"
+        />
+      </svg>
+    </button>
   </div>
 </div>
