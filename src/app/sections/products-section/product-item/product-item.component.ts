@@ -6,6 +6,7 @@ import { TranslatePipe } from '../../../i18n/translate.pipe';
   selector: 'app-product-item',
   imports: [RouterLink, TranslatePipe],
   templateUrl: './product-item.component.html',
+  host: { class: 'block h-full' },
 })
 export class ProductItemComponent {
   pcbNo = input.required<string>();
