@@ -70,8 +70,8 @@ export class PcbPreviewComponent {
    * cream on the dark "off" state (SVG presentation attributes can't resolve
    * CSS `var()`, so the theme hex values are inlined here).
    */
-  readonly toggleIconColor = computed(() =>
-    this.showComponents() ? '#0b5d50' /* teal-deep */ : '#fff9e8' /* cream */,
+  readonly toggleIconColor = computed(
+    () => (this.showComponents() ? '#0b5d50' /* teal-deep */ : '#fff9e8') /* cream */,
   );
 
   /** Natural pixel size of the loaded image; `null` until it loads. */
