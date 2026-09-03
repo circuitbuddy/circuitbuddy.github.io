@@ -94,12 +94,10 @@
                     style="width: 2"
                   />
                 </div>
-                @if (part.descriptionKey; as descriptionKey) {
-                  <div
-                    class="w-full p-5 lg:flex-1 bg-white rounded-xl text-base text-gray-700 leading-relaxed"
-                    [innerHTML]="descriptionKey | t"
-                  ></div>
-                }
+                <app-multivibrator-part-details
+                  [part]="part"
+                  class="w-full p-5 lg:flex-1 bg-white rounded-xl"
+                />
               </div>
             </div>
           } @else {

@@ -16,11 +16,12 @@ interface PcbPartBase {
   /** Photo of the real-world part, shown when the marker is selected. */
   imageUrl: string;
   /**
-   * Translation key for a short HTML description of the part (see the
-   * circuit's `*.parts.i18n.ts`). Rendered with `[innerHTML]`, so inline
-   * markup is allowed. Optional — a part without one shows no description.
+   * Which write-up to show when the part is selected. The circuit's own
+   * part-details component matches this against a `@case` block in its
+   * template. Parts that share a value share a block (e.g. both LEDs).
+   * Optional — a part without one shows just its photo.
    */
-  descriptionKey?: string;
+  detailId?: string;
   /** Marker centre X, in natural image pixels. */
   x: number;
   /** Marker centre Y, in natural image pixels. */

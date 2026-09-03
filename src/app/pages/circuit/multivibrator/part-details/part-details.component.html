@@ -1,0 +1,118 @@
+@switch (part().detailId) {
+  @case ('led') {
+    <p>{{ 'circuit.multivibrator.part.led.summary' | t }}</p>
+    <ul>
+      <li>{{ 'circuit.multivibrator.part.led.polarity' | t }}</li>
+      <li>{{ 'circuit.multivibrator.part.led.role' | t }}</li>
+    </ul>
+
+    <div
+      class="mt-4 flex items-start gap-2 rounded-md border-l-4 border-amber-500 bg-amber-50 p-3 text-sm text-amber-900"
+      role="note"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="mt-0.5 h-5 w-5 shrink-0 text-amber-600"
+        aria-hidden="true"
+      >
+        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+      </svg>
+      <span>{{ 'circuit.multivibrator.part.led.warning' | t }}</span>
+    </div>
+
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+      <img
+        [src]="images.Leds.led5mmPlacement"
+        alt=""
+        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+      />
+      <figcaption class="text-sm text-gray-600">
+        {{ 'circuit.multivibrator.part.led.placement' | t }}
+      </figcaption>
+    </figure>
+  }
+
+  @case ('r22k') {
+    <p>{{ 'circuit.multivibrator.part.r22k.summary' | t }}</p>
+    <ul>
+      <li>{{ 'circuit.multivibrator.part.r22k.timing' | t }}</li>
+      <li>{{ 'circuit.multivibrator.part.r22k.experiment' | t }}</li>
+    </ul>
+
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+      <img
+        [src]="images.Resistors.resistorPlacement"
+        alt=""
+        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+      />
+      <figcaption class="text-sm text-gray-600">
+        {{ 'circuit.multivibrator.part.resistor.placement' | t }}
+      </figcaption>
+    </figure>
+  }
+
+  @case ('r330') {
+    <p>{{ 'circuit.multivibrator.part.r330.summary' | t }}</p>
+    <ul>
+      <li>{{ 'circuit.multivibrator.part.r330.why' | t }}</li>
+    </ul>
+
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+      <img
+        [src]="images.Resistors.resistorPlacement"
+        alt=""
+        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+      />
+      <figcaption class="text-sm text-gray-600">
+        {{ 'circuit.multivibrator.part.resistor.placement' | t }}
+      </figcaption>
+    </figure>
+  }
+
+  @case ('capacitor') {
+    <p>{{ 'circuit.multivibrator.part.capacitor.summary' | t }}</p>
+    <ul>
+      <li>{{ 'circuit.multivibrator.part.capacitor.how' | t }}</li>
+      <li>{{ 'circuit.multivibrator.part.capacitor.polarity' | t }}</li>
+    </ul>
+
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+      <img
+        [src]="images.Capacitors.electrolytePlacement"
+        alt=""
+        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+      />
+      <figcaption class="text-sm text-gray-600">
+        {{ 'circuit.multivibrator.part.capacitor.placement' | t }}
+      </figcaption>
+    </figure>
+  }
+
+  @case ('transistor') {
+    <p>{{ 'circuit.multivibrator.part.transistor.summary' | t }}</p>
+    <ul>
+      <li>{{ 'circuit.multivibrator.part.transistor.how' | t }}</li>
+      <li>{{ 'circuit.multivibrator.part.transistor.role' | t }}</li>
+    </ul>
+
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+      <img
+        [src]="images.Transistors.transistorPlacement"
+        alt=""
+        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+      />
+      <figcaption class="text-sm text-gray-600">
+        {{ 'circuit.multivibrator.part.transistor.placement' | t }}
+      </figcaption>
+    </figure>
+  }
+
+  @case ('usbC') {
+    <p>{{ 'circuit.multivibrator.part.usbC.summary' | t }}</p>
+    <ul>
+      <li>{{ 'circuit.multivibrator.part.usbC.source' | t }}</li>
+      <li>{{ 'circuit.multivibrator.part.usbC.data' | t }}</li>
+    </ul>
+  }
+}
