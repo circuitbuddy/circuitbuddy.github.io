@@ -6,7 +6,7 @@ import { productsTranslations } from '../pages/home/sections/products-section/pr
 import { contactTranslations } from '../pages/home/sections/contact-us-section/contact-us-section.i18n';
 import { footerTranslations } from '../app.i18n';
 import { multivibratorTranslations } from '../pages/circuit/multivibrator/multivibrator.i18n';
-import { multivibratorPartTranslations } from '../pages/circuit/multivibrator/multivibrator.parts.i18n';
+import { multivibratorPartTranslations } from '../pages/circuit/multivibrator/part-details/multivibrator.parts.i18n';
 
 export { LANGS } from './types';
 export type { Lang } from './types';

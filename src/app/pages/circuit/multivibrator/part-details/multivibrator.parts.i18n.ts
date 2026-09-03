@@ -1,4 +1,4 @@
-import { TranslationFragment } from '../../../i18n/types';
+import { TranslationFragment } from '../../../../i18n/types';
 
 /**
  * Text for the part write-ups shown under the multivibrator PCB preview.
@@ -13,24 +13,16 @@ export const multivibratorPartTranslations = {
   // --- LEDs ---
   'circuit.multivibrator.part.led.summary': {
     en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
-    si: 'ධාරාව ගලා යනකොට එළිය දෙන උපාංගයක්. ධාරාව ගලාගෙන යන්නේ එක දිශාවකට විතරයි.',
-  },
-  'circuit.multivibrator.part.led.polarity': {
-    en: 'The longer leg is the positive (+) side.',
-    si: 'දිග කකුල (+) පැත්තයි.',
+    si: 'මෙයා සහ අනිත් LED එක මාරුවෙන් මාරුවට පත්තුවෙන එකෙන් තමයි ආලෝක රටාව නිර්මාණය වෙන්නෙ.',
   },
   // Shown in the warning box on the LED write-up — see part-details.component.html.
   'circuit.multivibrator.part.led.warning': {
     en: 'Fit it the right way round: the shorter leg goes to the flat side marked on the board. A backwards LED simply stays dark — and once it is soldered in, turning it around is fiddly.',
-    si: 'හරි පැත්තට සවි කරන්න: කොට කකුල බෝඩ් එකේ ලකුණු කරලා තියෙන පැතලි පැත්තට එන්න ඕනෙ. උල්ටා විදිහට දැම්මොත් LED එක පත්තු වෙන්නේ නෑ — සෝල්ඩර් කරලා ඉවර වුණාට පස්සේ ආපහු හරවන එක ලේසි නෑ.',
-  },
-  'circuit.multivibrator.part.led.role': {
-    en: 'The two LEDs sit on opposite halves of the board and take turns lighting up.',
-    si: 'LED දෙක බෝඩ් එකේ දෙපැත්තේ තියෙනවා, මාරුවෙන් මාරුවට පත්තු වෙනවා.',
+    si: 'මෙම උපාංගය පැත්ත මාරුකර සවිකිරීමෙන් පරිපථය ක්‍රියාත්මක නොවීමට හා උපාංගයට හානි වීමට ඉඩ ඇත.',
   },
   'circuit.multivibrator.part.led.placement': {
     en: 'The short leg goes into the − hole and the long leg into the + hole.',
-    si: 'කොට කකුල (−) සිදුරටත්, දිග කකුල (+) සිදුරටත් යන්න ඕනෙ.',
+    si: 'මෙයාගේ දිග අග්‍රය තමයි (+) සහ දිගින් අඩු කෙනා තමයි (-) අග්‍රය වෙන්නෙ. මේ රූපසටහනේ තියෙන විදිහට තමයි එයාව සර්කිට් බෝඩ් එකට නිවැරදිව සවි කරගන්නේ',
   },
 
   // --- 22k resistors (timing) ---

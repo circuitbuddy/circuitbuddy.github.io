@@ -1,10 +1,9 @@
 @switch (part().detailId) {
   @case ('led') {
     <p>{{ 'circuit.multivibrator.part.led.summary' | t }}</p>
-    <ul>
-      <li>{{ 'circuit.multivibrator.part.led.polarity' | t }}</li>
+    <!-- <ul>
       <li>{{ 'circuit.multivibrator.part.led.role' | t }}</li>
-    </ul>
+    </ul> -->
 
     <div
       class="mt-4 flex items-start gap-2 rounded-md border-l-4 border-amber-500 bg-amber-50 p-3 text-sm text-amber-900"
@@ -21,11 +20,11 @@
       <span>{{ 'circuit.multivibrator.part.led.warning' | t }}</span>
     </div>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
       <img
         [src]="images.Leds.led5mmPlacement"
         alt=""
-        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+        class="w-full rounded-md bg-white object-contain"
       />
       <figcaption class="text-sm text-gray-600">
         {{ 'circuit.multivibrator.part.led.placement' | t }}
@@ -40,11 +39,11 @@
       <li>{{ 'circuit.multivibrator.part.r22k.experiment' | t }}</li>
     </ul>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
       <img
         [src]="images.Resistors.resistorPlacement"
         alt=""
-        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+        class="w-full rounded-md bg-white object-contain"
       />
       <figcaption class="text-sm text-gray-600">
         {{ 'circuit.multivibrator.part.resistor.placement' | t }}
@@ -58,11 +57,11 @@
       <li>{{ 'circuit.multivibrator.part.r330.why' | t }}</li>
     </ul>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
       <img
         [src]="images.Resistors.resistorPlacement"
         alt=""
-        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+        class="w-full rounded-md bg-white object-contain"
       />
       <figcaption class="text-sm text-gray-600">
         {{ 'circuit.multivibrator.part.resistor.placement' | t }}
@@ -77,11 +76,11 @@
       <li>{{ 'circuit.multivibrator.part.capacitor.polarity' | t }}</li>
     </ul>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
       <img
         [src]="images.Capacitors.electrolytePlacement"
         alt=""
-        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+        class="w-full rounded-md bg-white object-contain"
       />
       <figcaption class="text-sm text-gray-600">
         {{ 'circuit.multivibrator.part.capacitor.placement' | t }}
@@ -96,11 +95,11 @@
       <li>{{ 'circuit.multivibrator.part.transistor.role' | t }}</li>
     </ul>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3 lg:flex-row lg:items-center">
+    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
       <img
         [src]="images.Transistors.transistorPlacement"
         alt=""
-        class="w-full rounded-md bg-white object-contain lg:w-50 lg:shrink-0"
+        class="w-full rounded-md bg-white object-contain"
       />
       <figcaption class="text-sm text-gray-600">
         {{ 'circuit.multivibrator.part.transistor.placement' | t }}
