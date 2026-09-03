@@ -13,6 +13,8 @@ interface PcbPartBase {
   name: string;
   /** Optional tooltip text; falls back to `name`. */
   label?: string;
+  /** Marker shape. */
+  imageUrl: string;
   /** Marker centre X, in natural image pixels. */
   x: number;
   /** Marker centre Y, in natural image pixels. */

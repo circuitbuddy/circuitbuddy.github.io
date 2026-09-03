@@ -1,9 +1,9 @@
 import { TranslationFragment } from './types';
-import { navTranslations } from '../sections/top-nav/top-nav.i18n';
-import { heroTranslations } from '../sections/hero-section/hero-section.i18n';
-import { aboutTranslations } from '../sections/about-section/about-section.i18n';
-import { productsTranslations } from '../sections/products-section/products-section.i18n';
-import { contactTranslations } from '../sections/contact-us-section/contact-us-section.i18n';
+import { navTranslations } from '../pages/home/sections/top-nav/top-nav.i18n';
+import { heroTranslations } from '../pages/home/sections/hero-section/hero-section.i18n';
+import { aboutTranslations } from '../pages/home/sections/about-section/about-section.i18n';
+import { productsTranslations } from '../pages/home/sections/products-section/products-section.i18n';
+import { contactTranslations } from '../pages/home/sections/contact-us-section/contact-us-section.i18n';
 import { footerTranslations } from '../app.i18n';
 import { multivibratorTranslations } from '../pages/circuit/multivibrator/multivibrator.i18n';
 

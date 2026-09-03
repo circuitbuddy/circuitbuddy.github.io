@@ -1,0 +1,103 @@
+<!-- ============ ABOUT ============ -->
+<section id="about" class="w-full mx-auto bg-[#ffd474] text-teal-800">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-6xl mx-auto px-4 py-14 md:py-20">
+      <p class="font-mono text-sm tracking-widest uppercase text-teal-brand mb-2">// about</p>
+      <h2 class="font-display font-800 text-3xl md:text-4xl">{{ 'about.title' | t }}</h2>
+
+      <div class="mt-6 grid gap-8 md:grid-cols-2 md:gap-12 items-start">
+        <div class="space-y-4 text-base md:text-lg leading-relaxed">
+          <p [innerHTML]="'about.p1' | t"></p>
+          <p [innerHTML]="'about.p2' | t"></p>
+          <p [innerHTML]="'about.p3' | t"></p>
+          <!-- <p>
+            <span [innerHTML]="'about.p4' | t"></span>
+            <img
+              class="inline-block ml-1 w-5 relative -top-0.5"
+              src="data:image/png;base64,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"
+            />
+          </p> -->
+          <div class="font-display font-800 text-2xl md:text-3xl pt-2">
+            {{ 'about.usbTitle' | t }}
+          </div>
+          <ul class="space-y-3 text-base md:text-lg leading-relaxed">
+            <li class="flex items-start gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="#00786f"
+                class="min-w-6 w-6 relative top-2"
+              >
+                <path
+                  d="M420-340h120v-100h100v-120H540v-100H420v100H320v120h100v100Zm60 260q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"
+                />
+              </svg>
+              <p [innerHTML]="'about.usb1' | t"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="#00786f"
+                class="min-w-6 w-6 relative top-2"
+              >
+                <path
+                  d="M200-120q-17 0-28.5-11.5T160-160v-40h-40v-160q0-17 11.5-28.5T160-400h40v-280q0-66 47-113t113-47q66 0 113 47t47 113v400q0 33 23.5 56.5T600-200q33 0 56.5-23.5T680-280v-280h-40q-17 0-28.5-11.5T600-600v-160h40v-40q0-17 11.5-28.5T680-840h80q17 0 28.5 11.5T800-800v40h40v160q0 17-11.5 28.5T800-560h-40v280q0 66-47 113t-113 47q-66 0-113-47t-47-113v-400q0-33-23.5-56.5T360-760q-33 0-56.5 23.5T280-680v280h40q17 0 28.5 11.5T360-360v160h-40v40q0 17-11.5 28.5T280-120h-80Z"
+                />
+              </svg>
+              <p [innerHTML]="'about.usb2' | t"></p>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="#00786f"
+                class="min-w-6 w-6 relative top-2"
+              >
+                <path
+                  d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"
+                />
+              </svg>
+              <p [innerHTML]="'about.usb3' | t"></p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- "How it works" steps: a real sequence, so numbering carries meaning -->
+        <ol class="space-y-4">
+          <li class="flex gap-4 items-start bg-slate-100 rounded-blob p-4 shadow-sm">
+            <span
+              class="shrink-0 w-10 h-10 grid place-items-center rounded-full bg-yellow-400 font-mono font-bold text-teal-deep"
+              >1</span
+            >
+            <div>
+              <h3 class="font-display font-bold text-lg">{{ 'about.step1.title' | t }}</h3>
+              <p class="text-sm text-teal-deep/90">{{ 'about.step1.body' | t }}</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start bg-slate-100 rounded-blob p-4 shadow-sm">
+            <span
+              class="shrink-0 w-10 h-10 grid place-items-center rounded-full bg-yellow-400 font-mono font-bold text-teal-deep"
+              >2</span
+            >
+            <div>
+              <h3 class="font-display font-bold text-lg">{{ 'about.step2.title' | t }}</h3>
+              <p class="text-sm text-teal-deep/90">{{ 'about.step2.body' | t }}</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start bg-slate-100 rounded-blob p-4 shadow-sm">
+            <span
+              class="shrink-0 w-10 h-10 grid place-items-center rounded-full bg-yellow-400 font-mono font-bold text-teal-deep"
+              >3</span
+            >
+            <div>
+              <h3 class="font-display font-bold text-lg">{{ 'about.step3.title' | t }}</h3>
+              <p class="text-sm text-teal-deep/90">{{ 'about.step3.body' | t }}</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
