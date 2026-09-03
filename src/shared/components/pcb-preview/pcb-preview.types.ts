@@ -13,8 +13,14 @@ interface PcbPartBase {
   name: string;
   /** Optional tooltip text; falls back to `name`. */
   label?: string;
-  /** Marker shape. */
+  /** Photo of the real-world part, shown when the marker is selected. */
   imageUrl: string;
+  /**
+   * Translation key for a short HTML description of the part (see the
+   * circuit's `*.parts.i18n.ts`). Rendered with `[innerHTML]`, so inline
+   * markup is allowed. Optional — a part without one shows no description.
+   */
+  descriptionKey?: string;
   /** Marker centre X, in natural image pixels. */
   x: number;
   /** Marker centre Y, in natural image pixels. */
