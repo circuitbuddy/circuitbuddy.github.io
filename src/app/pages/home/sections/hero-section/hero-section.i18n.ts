@@ -2,12 +2,12 @@ import { TranslationFragment } from '../../../../i18n/types';
 
 export const heroTranslations = {
   'hero.tagline': {
-    en: 'Learn Electronics with Fun!',
-    si: 'එන්න, සර්කිට් හදන ගමන්<br>ඉලෙක්ට්‍රොනික් ඉගෙන ගන්න',
+    en: 'Build circuits, have Fun<br>and Learn Electronics!',
+    si: 'එන්න, සර්කිට් හදන ගමන්<br>ඉලෙක්ට්‍රොනික් ඉගෙන ගන්න!',
   },
   'hero.subtitle': {
     en: 'Beginner-friendly electronics kits you solder yourself. Every kit ships with a real PCB, all the parts, and a step-by-step guide — just add a soldering iron and curiosity.',
-    si: 'මූලික දැනුමක් නැතුව උනත් පහසුවෙන් එකලස් කරගන්න පුළුවන්.. ඉලෙක්ට්‍රොනික් දැනුම හා සර්කිට් හදාගන්න විදිහ ගැන උපදෙස් Circuit Buddy එකේ අපි ඔයාලට දෙනවා.',
+    si: 'අලුතෙන් පටන් ගන්න කෙනෙක්ට උනත් ලේසියෙන්ම එකලස් කරගන්න පුළුවන් සර්කිට් කට්ටල, අවශ්‍ය උපදෙස් වගේම ඉලෙක්ට්‍රොනික් පරිපථ සහ උපාංග ගැන දැනුමත් ඔයාට මෙතනින් ලබාගන්න පුළුවන්',
   },
   'hero.browse': { en: 'Browse circuits', si: 'පරිපථ ලැයිස්තුව' },
   'hero.how': { en: 'How it works', si: 'කොහොමද වැඩ කරන්නේ?' },
