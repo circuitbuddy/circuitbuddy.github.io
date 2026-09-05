@@ -1,9 +1,22 @@
 @switch (part().detailId) {
   @case ('led') {
-    <p>{{ 'circuit.multivibrator.part.led.summary' | t }}</p>
-    <!-- <ul>
-      <li>{{ 'circuit.multivibrator.part.led.role' | t }}</li>
-    </ul> -->
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="part().imageUrl" alt="" />
+      </div>
+      <div class="flex flex-1">
+        <p>{{ 'circuit.multivibrator.part.led.summary' | t }}</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="images.Leds.led5mmPlacement" alt="" />
+      </div>
+      <div class="flex flex-1">
+        <p>{{ 'circuit.multivibrator.part.led.placement' | t }}</p>
+      </div>
+    </div>
 
     <div
       class="mt-4 flex items-start gap-2 rounded-md border-l-4 border-amber-500 bg-amber-50 p-3 text-sm text-amber-900"
@@ -19,99 +32,115 @@
       </svg>
       <span>{{ 'circuit.multivibrator.part.led.warning' | t }}</span>
     </div>
-
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
-      <img
-        [src]="images.Leds.led5mmPlacement"
-        alt=""
-        class="w-full rounded-md bg-white object-contain"
-      />
-      <figcaption class="text-sm text-gray-600">
-        {{ 'circuit.multivibrator.part.led.placement' | t }}
-      </figcaption>
-    </figure>
   }
 
   @case ('r22k') {
-    <p>{{ 'circuit.multivibrator.part.r22k.summary' | t }}</p>
-    <ul>
-      <li>{{ 'circuit.multivibrator.part.r22k.timing' | t }}</li>
-      <li>{{ 'circuit.multivibrator.part.r22k.experiment' | t }}</li>
-    </ul>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="part().imageUrl" alt="" />
+      </div>
+      <div class="flex flex-1 flex-col">
+        <p>{{ 'circuit.multivibrator.part.r22k.summary' | t }}</p>
+        <ul>
+          <li>{{ 'circuit.multivibrator.part.r22k.timing' | t }}</li>
+          <li>{{ 'circuit.multivibrator.part.r22k.experiment' | t }}</li>
+        </ul>
+      </div>
+    </div>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
-      <img
-        [src]="images.Resistors.resistorPlacement"
-        alt=""
-        class="w-full rounded-md bg-white object-contain"
-      />
-      <figcaption class="text-sm text-gray-600">
-        {{ 'circuit.multivibrator.part.resistor.placement' | t }}
-      </figcaption>
-    </figure>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="images.Resistors.resistorPlacement" alt="" />
+      </div>
+      <div class="flex flex-1">
+        <p>{{ 'circuit.multivibrator.part.resistor.placement' | t }}</p>
+      </div>
+    </div>
   }
 
   @case ('r330') {
-    <p>{{ 'circuit.multivibrator.part.r330.summary' | t }}</p>
-    <ul>
-      <li>{{ 'circuit.multivibrator.part.r330.why' | t }}</li>
-    </ul>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="part().imageUrl" alt="" />
+      </div>
+      <div class="flex flex-1 flex-col">
+        <p>{{ 'circuit.multivibrator.part.r330.summary' | t }}</p>
+        <ul>
+          <li>{{ 'circuit.multivibrator.part.r330.why' | t }}</li>
+        </ul>
+      </div>
+    </div>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
-      <img
-        [src]="images.Resistors.resistorPlacement"
-        alt=""
-        class="w-full rounded-md bg-white object-contain"
-      />
-      <figcaption class="text-sm text-gray-600">
-        {{ 'circuit.multivibrator.part.resistor.placement' | t }}
-      </figcaption>
-    </figure>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="images.Resistors.resistorPlacement" alt="" />
+      </div>
+      <div class="flex flex-1">
+        <p>{{ 'circuit.multivibrator.part.resistor.placement' | t }}</p>
+      </div>
+    </div>
   }
 
   @case ('capacitor') {
-    <p>{{ 'circuit.multivibrator.part.capacitor.summary' | t }}</p>
-    <ul>
-      <li>{{ 'circuit.multivibrator.part.capacitor.how' | t }}</li>
-      <li>{{ 'circuit.multivibrator.part.capacitor.polarity' | t }}</li>
-    </ul>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="part().imageUrl" alt="" />
+      </div>
+      <div class="flex flex-1 flex-col">
+        <p>{{ 'circuit.multivibrator.part.capacitor.summary' | t }}</p>
+        <ul>
+          <li>{{ 'circuit.multivibrator.part.capacitor.how' | t }}</li>
+          <li>{{ 'circuit.multivibrator.part.capacitor.polarity' | t }}</li>
+        </ul>
+      </div>
+    </div>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
-      <img
-        [src]="images.Capacitors.electrolytePlacement"
-        alt=""
-        class="w-full rounded-md bg-white object-contain"
-      />
-      <figcaption class="text-sm text-gray-600">
-        {{ 'circuit.multivibrator.part.capacitor.placement' | t }}
-      </figcaption>
-    </figure>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="images.Capacitors.electrolytePlacement" alt="" />
+      </div>
+      <div class="flex flex-1">
+        <p>{{ 'circuit.multivibrator.part.capacitor.placement' | t }}</p>
+      </div>
+    </div>
   }
 
   @case ('transistor') {
-    <p>{{ 'circuit.multivibrator.part.transistor.summary' | t }}</p>
-    <ul>
-      <li>{{ 'circuit.multivibrator.part.transistor.how' | t }}</li>
-      <li>{{ 'circuit.multivibrator.part.transistor.role' | t }}</li>
-    </ul>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="part().imageUrl" alt="" />
+      </div>
+      <div class="flex flex-1 flex-col">
+        <p>{{ 'circuit.multivibrator.part.transistor.summary' | t }}</p>
+        <ul>
+          <li>{{ 'circuit.multivibrator.part.transistor.how' | t }}</li>
+          <li>{{ 'circuit.multivibrator.part.transistor.role' | t }}</li>
+        </ul>
+      </div>
+    </div>
 
-    <figure class="mt-4 flex flex-col gap-3 rounded-lg p-3">
-      <img
-        [src]="images.Transistors.transistorPlacement"
-        alt=""
-        class="w-full rounded-md bg-white object-contain"
-      />
-      <figcaption class="text-sm text-gray-600">
-        {{ 'circuit.multivibrator.part.transistor.placement' | t }}
-      </figcaption>
-    </figure>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="images.Transistors.transistorPlacement" alt="" />
+      </div>
+      <div class="flex flex-1">
+        <p>{{ 'circuit.multivibrator.part.transistor.placement' | t }}</p>
+      </div>
+    </div>
   }
 
   @case ('usbC') {
-    <p>{{ 'circuit.multivibrator.part.usbC.summary' | t }}</p>
-    <ul>
-      <li>{{ 'circuit.multivibrator.part.usbC.source' | t }}</li>
-      <li>{{ 'circuit.multivibrator.part.usbC.data' | t }}</li>
-    </ul>
+    <div class="flex flex-col lg:flex-row gap-2 w-full bg-white p-2">
+      <div class="w-60 mx-auto lg:mx-0 rounded-xl">
+        <img class="w-full object-contain" [src]="part().imageUrl" alt="" />
+      </div>
+      <div class="flex flex-1 flex-col">
+        <p>{{ 'circuit.multivibrator.part.usbC.summary' | t }}</p>
+        <ul>
+          <li>{{ 'circuit.multivibrator.part.usbC.source' | t }}</li>
+          <li>{{ 'circuit.multivibrator.part.usbC.data' | t }}</li>
+        </ul>
+      </div>
+    </div>
   }
 }
