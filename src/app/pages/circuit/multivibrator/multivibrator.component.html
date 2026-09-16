@@ -72,7 +72,7 @@
           basePath="/assets/pcb-images/multivibrator/"
           image="pcb.png"
           componentsImage="components.png"
-          [config]="pcbConfig"
+          [parts]="pcbParts"
           (partClick)="onPartClick($event)"
           class="max-w-120"
         ></app-pcb-preview>
@@ -111,40 +111,81 @@
         </p>
       </div>
 
-      <div class="mt-8">
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          මේ සර්කිට් එක දිහා හොඳට බැලුවොත් ඔයාලට විශේෂ දෙයක් බලාගන්න පුළුවන්. ඒ තමයි මේ සර්කිට් එක
-          හරියටම මැද්දෙන් සමාන කොටස් දෙකකට බෙදන්න පුළුවන්.
+      <!-- ============ BILL OF MATERIALS ============ -->
+      <section class="mt-12">
+        <h2 class="font-display font-800 text-2xl md:text-3xl text-cream">
+          {{ 'circuit.multivibrator.bom.title' | t }}
+        </h2>
+        <p class="mt-2 text-base text-cream/80 leading-relaxed max-w-2xl">
+          {{ 'circuit.multivibrator.bom.intro' | t }}
         </p>
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          මෙතන ප්‍රධානම කෙනා තමයි ට්‍රාන්සිස්ටර් එක. එයා තමයි ස්වයක්‍රීය ස්වීච් එකක් විදිහට
-          ක්‍රියාත්මක වෙලා එයාට අයිති LED එක On/Off කරන්නෙ.
-        </p>
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          හැබැයි මේ දෙපැත්තම බලාගෙන ඉන්නෙ තමන්ට චාන්ස් එකක් ආපු ගමන් අනිත් කෙනාව Off කරන්න. ඒ විදිහට
-          ක්‍රියාත්මක වෙන්න තමයි මේ සර්කිට් එක ඩිසයින් කරලා තියෙන්නෙ.
-        </p>
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          ඉතින් එක්කෙනෙක්ට චාන්ස් එකක් ආව ගමන් එයා කරන්නේ තමන්ගේ LED එක on කරලා අනිත් කෙනාව Off කරන
-          එක.
-        </p>
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          හැබැයි එහෙමයි කියලා අනිත් කෙනා නිකං ඉන්නෙත් නෑ, එයා Off උනාට පස්සෙ ටික වෙලාවක් බලාගෙන
-          ඉඳලා, වෙලව ආව ගමන් අනික් පැත්තට Return එක දෙනවා.
-        </p>
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          මේ වැඩේ වෙන්න කොයිතරම් වෙලාවක් ගන්නවද කියලා තීරණය වෙන්නේ එයාට අයිති කැපෑසිටර් එකෙන් සහ ඒ
-          කැපෑසිටර් එකට සම්බන්ධ කරලා තියෙන රෙසිස්ටර් එකෙන්.
-        </p>
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          කැපෑසිටි එක වැඩි වෙනකොට වගේම රෙසිස්ටන්ස් එක වැඩි වෙනකොටත් මේ කාලය වැඩි වෙනවා.
-        </p>
-        <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-          ඉතින් ඔය විදිහට මේ සර්කිට් එකට විදුලිය ලැබිලා තියෙනකන් මේ දෙපැත්ත තරඟෙට තමන්ගේ LED එක On
-          කරගෙන අනික් කෙනාව Off කරනවා. ඔය විදිහට තමයි අපිට මාරුවෙන් මාරුවට දැල්වෙන රටාවක් බලාගන්න
-          පුළුවන් වෙන්නේ.
-        </p>
-      </div>
+
+        <div class="mt-5 max-w-xl overflow-x-auto rounded-xl bg-amber-100 p-2 shadow-sm">
+          <table class="w-full border-collapse text-left text-gray-700">
+            <thead>
+              <tr class="text-xs uppercase tracking-wider text-gray-500">
+                <th scope="col" class="px-3 py-2 font-semibold">
+                  {{ 'circuit.multivibrator.bom.designators' | t }}
+                </th>
+                <th scope="col" class="px-3 py-2 font-semibold" colspan="2">
+                  {{ 'circuit.multivibrator.bom.part' | t }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of bom; track row.name) {
+                <tr class="border-t border-amber-200/70">
+                  <td class="px-3 py-2 font-semibold text-lg text-gray-600">
+                    {{ row.label.join(', ') }}
+                  </td>
+                  <td scope="row" class="px-3 py-2 text-left">{{ row.name }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mt-12">
+        <h2 class="font-display font-800 text-2xl md:text-3xl text-cream">
+          {{ 'circuit.multivibrator.bom.title' | t }}
+        </h2>
+
+        <div class="mt-0">
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            මේ සර්කිට් එක දිහා හොඳට බැලුවොත් ඔයාලට විශේෂ දෙයක් බලාගන්න පුළුවන්. ඒ තමයි මේ සර්කිට් එක
+            හරියටම මැද්දෙන් සමාන කොටස් දෙකකට බෙදන්න පුළුවන්.
+          </p>
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            මෙතන ප්‍රධානම කෙනා තමයි ට්‍රාන්සිස්ටර් එක. එයා තමයි ස්වයක්‍රීය ස්වීච් එකක් විදිහට
+            ක්‍රියාත්මක වෙලා එයාට අයිති LED එක On/Off කරන්නෙ.
+          </p>
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            හැබැයි මේ දෙපැත්තම බලාගෙන ඉන්නෙ තමන්ට චාන්ස් එකක් ආපු ගමන් අනිත් කෙනාව Off කරන්න. ඒ
+            විදිහට ක්‍රියාත්මක වෙන්න තමයි මේ සර්කිට් එක ඩිසයින් කරලා තියෙන්නෙ.
+          </p>
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            ඉතින් එක්කෙනෙක්ට චාන්ස් එකක් ආව ගමන් එයා කරන්නේ තමන්ගේ LED එක on කරලා අනිත් කෙනාව Off
+            කරන එක.
+          </p>
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            හැබැයි එහෙමයි කියලා අනිත් කෙනා නිකං ඉන්නෙත් නෑ, එයා Off උනාට පස්සෙ ටික වෙලාවක් බලාගෙන
+            ඉඳලා, වෙලව ආව ගමන් අනික් පැත්තට Return එක දෙනවා.
+          </p>
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            මේ වැඩේ වෙන්න කොයිතරම් වෙලාවක් ගන්නවද කියලා තීරණය වෙන්නේ එයාට අයිති කැපෑසිටර් එකෙන් සහ ඒ
+            කැපෑසිටර් එකට සම්බන්ධ කරලා තියෙන රෙසිස්ටර් එකෙන්.
+          </p>
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            කැපෑසිටි එක වැඩි වෙනකොට වගේම රෙසිස්ටන්ස් එක වැඩි වෙනකොටත් මේ කාලය වැඩි වෙනවා.
+          </p>
+          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
+            ඉතින් ඔය විදිහට මේ සර්කිට් එකට විදුලිය ලැබිලා තියෙනකන් මේ දෙපැත්ත තරඟෙට තමන්ගේ LED එක On
+            කරගෙන අනික් කෙනාව Off කරනවා. ඔය විදිහට තමයි අපිට මාරුවෙන් මාරුවට දැල්වෙන රටාවක් බලාගන්න
+            පුළුවන් වෙන්නේ.
+          </p>
+        </div>
+      </section>
     </div>
   </div>
 </main>

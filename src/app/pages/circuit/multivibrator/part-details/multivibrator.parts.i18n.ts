@@ -13,7 +13,15 @@ export const multivibratorPartTranslations = {
   // --- LEDs ---
   'circuit.multivibrator.part.led.summary': {
     en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
-    si: 'මෙයා සහ අනිත් LED එක මාරුවෙන් මාරුවට පත්තුවෙන එකෙන් තමයි ආලෝක රටාව නිර්මාණය වෙන්නෙ.',
+    si: 'මේ උපාංගය තමයි බල්බ් එකක් විදිහට වැඩකරන්නෙ. පරිපථයේ තියෙන LED දෙක මාරුවෙන් මාරුවට දැල්වෙන එකෙන් තමයි ආලෝක රටාව නිර්මාණය වෙන්නෙ. ',
+  },
+  'circuit.multivibrator.part.led.description1': {
+    en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
+    si: 'LED දෙකේම (+) අග්‍රය R2 රෙසිස්ටර් හරහා පරිපථයේ (+) විදුලියත් එක්ක සෑමවිටම සම්බන්ධ වෙලා තියෙන්නෙ.',
+  },
+  'circuit.multivibrator.part.led.description2': {
+    en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
+    si: 'හැබැයි (-) අග්‍රය පරිපථයේ (-) විදුලියත් එක්ක කෙලින්ම සම්බන්ධ වෙන්නේ LED එකට අදාල ට්‍රාන්සිස්ටර් එක හරහා නිසා බල්බය දැල්වෙන්නේ ඒ ට්‍රාන්සිස්ටර් එක ක්‍රියාත්මක උනොත් විතරයි.',
   },
   // Shown in the warning box on the LED write-up — see part-details.component.html.
   'circuit.multivibrator.part.led.warning': {
@@ -22,7 +30,7 @@ export const multivibratorPartTranslations = {
   },
   'circuit.multivibrator.part.led.placement': {
     en: 'The short leg goes into the − hole and the long leg into the + hole.',
-    si: 'මෙයාගේ දිග අග්‍රය තමයි (+) සහ දිගින් අඩු කෙනා තමයි (-) අග්‍රය වෙන්නෙ. මේ රූපසටහනේ තියෙන විදිහට තමයි එයාව සර්කිට් බෝඩ් එකට නිවැරදිව සවි කරගන්නේ',
+    si: 'LED එකේ දිග අග්‍රය තමයි (+) සහ දිගින් අඩු එක තමයි (-) අග්‍රය වෙන්නෙ. මේ රූපසටහනේ තියෙන විදිහට තමයි එයාව සර්කිට් බෝඩ් එකට නිවැරදිව සවි කරගන්නේ',
   },
 
   // --- 22k resistors (timing) ---
@@ -75,15 +83,15 @@ export const multivibratorPartTranslations = {
   // --- BC547 transistors (switching) ---
   'circuit.multivibrator.part.transistor.summary': {
     en: 'A BC547 is a switch with no moving parts.',
-    si: 'BC547 කියන්නේ චලනය වන කොටස් නැති ස්විචයක්.',
+    si: 'මේ උපාංගයට කියන්නෙ ට්‍රාන්සිස්ටර් එකක් කියලා. මේ සර්කිට් එකේ එයාගේ කාර්යභාරය තමයි ස්වයක්‍රීය ස්විචයක් විදිහට ක්‍රියාත්මක වෙන එක.',
   },
   'circuit.multivibrator.part.transistor.how': {
     en: 'A tiny current into the middle leg (the base) lets a much larger current flow through the other two.',
-    si: 'මැද කකුලට (base එකට) කුඩා ධාරාවක් දුන්නම, අනිත් කකුල් දෙක හරහා ඊට වඩා ලොකු ධාරාවක් ගලාගෙන යන්න පුළුවන් වෙනවා.',
+    si: 'තමන්ගේ පැත්තේ තිඉයන LED එකේ (-) අග්‍රය පරිපථයේ (-) විදුලියත් එක්ක සම්බන්ධ කරන වැඩේ සහ විසන්ධි කරන වැඩේ කරන්නෙ මේ ට්‍රාන්සිස්ටර් එකෙන්. ',
   },
   'circuit.multivibrator.part.transistor.role': {
     en: 'Each transistor switches the LED on its own side of the board.',
-    si: 'එක් එක් ට්‍රාන්සිස්ටරය තමන්ගේ පැත්තේ LED එක පත්තු කරනවා.',
+    si: 'ස්විචය On වෙලා තියෙනවද නැත්තන් Off වෙලා තියෙනවද කියලා තීරණය වෙන්නේ මෙයාගේ මැද තියෙන Base අග්‍රයට ලැබෙන විදුලියේ ස්වභාවයත් එක්ක.',
   },
   'circuit.multivibrator.part.transistor.placement': {
     en: 'It only fits one way: the flat face of the transistor has to line up with the flat side of the outline printed on the board.',

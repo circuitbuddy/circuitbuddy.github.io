@@ -4,8 +4,12 @@
       <div class="w-60 mx-auto lg:mx-0 rounded-xl">
         <img class="w-full object-contain" [src]="part().imageUrl" alt="" />
       </div>
-      <div class="flex flex-1">
+      <div class="flex flex-1 flex-col">
         <p>{{ 'circuit.multivibrator.part.led.summary' | t }}</p>
+        <ul>
+          <li>{{ 'circuit.multivibrator.part.led.description1' | t }}</li>
+          <li>{{ 'circuit.multivibrator.part.led.description2' | t }}</li>
+        </ul>
       </div>
     </div>
 

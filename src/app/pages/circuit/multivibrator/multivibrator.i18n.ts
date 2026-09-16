@@ -11,4 +11,19 @@ export const multivibratorTranslations = {
     en: 'The rhythm comes from two capacitors charging and discharging in turn: each one holds a transistor off just long enough for its partner to light up, then they swap. It\'s the friendliest way to see timing, feedback, and transistor switching in action — the "hello world" of hands-on electronics.',
     si: 'මේ සර්කිට් එක හැදිලා තියෙන්නෙ ඉලෙක්ට්‍රොනික් ලෝකයේ තියෙන සරළම, ඒ වගේම වැදගත්ම උපාංග කීපයකින්. හැබැයි ඒවා එකතු වෙලා ක්‍රියාත්මක වෙන විදිහ නම් හරිම සිත්ගන්නාසුළුයි.',
   },
+  'circuit.multivibrator.bom.title': {
+    en: 'Bill of materials',
+    si: 'උපාංග ලැයිස්තුව',
+  },
+  'circuit.multivibrator.bom.intro': {
+    en: 'Everything that goes on the board, and how many of each you need.',
+    si: 'මේ සර්කිට් එක හදාගන්න ඕන උපාංග මොනවද, ඒවායින් කීයක් ඕනද කියලා මෙතන තියෙනවා.',
+  },
+  'circuit.multivibrator.bom.part': { en: 'Part', si: 'උපාංගය' },
+  'circuit.multivibrator.bom.designators': {
+    en: 'On the board',
+    si: 'සලකුණ',
+  },
+  'circuit.multivibrator.bom.quantity': { en: 'Qty', si: 'ගණන' },
+  'circuit.multivibrator.bom.total': { en: 'Total parts', si: 'මුළු උපාංග ගණන' },
 } satisfies TranslationFragment;

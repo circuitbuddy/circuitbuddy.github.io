@@ -5,7 +5,10 @@ import { PcbPreviewComponent } from '../../../../shared/components/pcb-preview/p
 import { PcbPart } from '../../../../shared/components/pcb-preview/pcb-preview.types';
 import { ScrollToDirective } from '../../../../shared/directives/scroll-to.directive';
 import { PartDetailsComponent } from './part-details/part-details.component';
-import { MULTIVIBRATOR_PCB_CONFIG } from './multivibrator.pcb-config';
+
+import { BomRow } from '../../../../shared/interfaces/bom-row';
+import { buildBom } from '../../../../shared/utils/bom.util';
+import { MULTIVIBRATOR_PARTS } from './multivibrator-parts';
 
 /** Height of the fixed header, subtracted so it doesn't overlap the scroll target. */
 const HEADER_OFFSET_PX = 80;
@@ -19,7 +22,10 @@ export class MultivibratorComponent {
   /** Name of the last part the user tapped on the PCB preview. */
   readonly selectedPart = signal<PcbPart | null>(null);
 
-  readonly pcbConfig = MULTIVIBRATOR_PCB_CONFIG;
+  readonly pcbParts = MULTIVIBRATOR_PARTS;
+
+  /** Bill of materials, grouped from the same part list the PCB preview uses. */
+  readonly bom: BomRow[] = buildBom(MULTIVIBRATOR_PARTS);
 
   private readonly doc = inject(DOCUMENT);
 

@@ -12,7 +12,7 @@ interface PcbPartBase {
   /** Identifier emitted through `(partClick)` when the marker is tapped. */
   name: string;
   /** Optional tooltip text; falls back to `name`. */
-  label?: string;
+  label?: string | null;
   /** Photo of the real-world part, shown when the marker is selected. */
   imageUrl: string;
   /**

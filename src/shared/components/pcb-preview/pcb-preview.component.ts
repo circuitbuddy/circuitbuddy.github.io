@@ -34,7 +34,7 @@ export class PcbPreviewComponent {
   /** Directory the image lives in. */
   basePath = input<string>('/assets/pcb-images/');
   /** Clickable part markers, positioned in the image's natural pixel space. */
-  config = input<PcbPreviewConfig>({ parts: [] });
+  parts = input<PcbPart[]>([]);
 
   /** Emits the `name` of the part that was clicked/tapped. */
   readonly partClick = output<PcbPart | null>();
@@ -106,7 +106,7 @@ export class PcbPreviewComponent {
 
   /** Parts normalised to SVG primitives (rect x/y become top-left). */
   readonly markers = computed(() =>
-    this.config().parts.map((p) =>
+    this.parts().map((p) =>
       p.shape === 'circle'
         ? {
             id: p.id,
