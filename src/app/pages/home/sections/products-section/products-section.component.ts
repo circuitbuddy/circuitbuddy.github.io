@@ -11,6 +11,8 @@ type Product = {
   descKey: string;
   price: number;
   route?: string;
+  /** Show as greyed out with a "Coming soon.." label instead of the buy button. */
+  isComingSoon?: boolean;
 };
 
 @Component({
@@ -31,37 +33,18 @@ export class ProductsSectionComponent {
     {
       pcbNo: '02',
       level: 'Beginner',
-      titleKey: 'product.touch.title',
-      descKey: 'product.touch.desc',
+      titleKey: 'product.knightRider.title',
+      descKey: 'product.knightRider.desc',
       price: 9,
+      isComingSoon: true,
     },
     {
       pcbNo: '03',
       level: 'Beginner',
-      titleKey: 'product.nightlight.title',
-      descKey: 'product.nightlight.desc',
+      titleKey: 'product.shortCircuitDetector.title',
+      descKey: 'product.shortCircuitDetector.desc',
       price: 10,
-    },
-    {
-      pcbNo: '04',
-      level: 'Intermediate',
-      titleKey: 'product.chaser.title',
-      descKey: 'product.chaser.desc',
-      price: 12,
-    },
-    {
-      pcbNo: '05',
-      level: 'Intermediate',
-      titleKey: 'product.siren.title',
-      descKey: 'product.siren.desc',
-      price: 12,
-    },
-    {
-      pcbNo: '06',
-      level: 'Intermediate',
-      titleKey: 'product.fmradio.title',
-      descKey: 'product.fmradio.desc',
-      price: 15,
+      isComingSoon: true,
     },
   ];
 }

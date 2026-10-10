@@ -1,7 +1,13 @@
 <article
-  [routerLink]="route() || null"
-  [class.cursor-pointer]="route()"
-  class="bg-[#128572] border border-teal-trace/40 rounded-blob p-5 h-full flex flex-col shadow-lg hover:border-buddy-yellow/70 hover:-translate-y-1 transition-all"
+  [routerLink]="isComingSoon() ? null : route() || null"
+  [class.cursor-pointer]="route() && !isComingSoon()"
+  [attr.aria-disabled]="isComingSoon() || null"
+  class="bg-[#128572] border border-teal-trace/40 rounded-blob p-5 h-full flex flex-col shadow-lg transition-all"
+  [class]="
+    isComingSoon()
+      ? 'opacity-60 grayscale cursor-not-allowed select-none'
+      : 'hover:border-buddy-yellow/70 hover:-translate-y-1'
+  "
 >
   <div class="flex items-start justify-between">
     <span class="font-mono text-xs bg-teal-brand text-gray-300 px-3 py-1 rounded-full"
@@ -21,11 +27,16 @@
   <div class="mt-5 flex items-center justify-between">
     <!-- <span class="font-display font-800 text-2xl text-buddy-yellow">${{ price() }}</span> -->
     <span></span>
-    <a
-      href="#contact"
-      (click)="$event.stopPropagation()"
-      class="bg-buddy-yellow text-teal-deep font-bold text-sm px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
-      >{{ 'products.buy' | t }}</a
-    >
+    @if (isComingSoon()) {
+      <span class="bg-cream/20 text-cream font-bold text-sm px-5 py-2 rounded-full">{{
+        'products.comingSoon' | t
+      }}</span>
+    } @else {
+      <div
+        class="bg-buddy-yellow text-teal-deep font-bold text-sm px-5 py-2 rounded-full hover:bg-buddy-amber transition-colors"
+      >
+        {{ 'products.buy' | t }}
+      </div>
+    }
   </div>
 </article>

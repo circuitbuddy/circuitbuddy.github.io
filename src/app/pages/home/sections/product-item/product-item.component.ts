@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '../../../../i18n/translate.pipe';
+import { ScrollToDirective } from '../../../../../shared/directives/scroll-to.directive';
 
 @Component({
   selector: 'app-product-item',
-  imports: [RouterLink, TranslatePipe],
+  imports: [RouterLink, TranslatePipe, ScrollToDirective],
   templateUrl: './product-item.component.html',
   host: { class: 'block h-full' },
 })
@@ -17,4 +18,6 @@ export class ProductItemComponent {
   descKey = input.required<string>();
   price = input.required<number>();
   route = input<string>();
+  /** Shows the product greyed out and non-interactive, with a "Coming soon" label instead of the buy button. */
+  isComingSoon = input(false);
 }
