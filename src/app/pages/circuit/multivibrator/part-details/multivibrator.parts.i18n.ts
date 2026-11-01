@@ -13,15 +13,19 @@ export const multivibratorPartTranslations = {
   // --- LEDs ---
   'circuit.multivibrator.part.led.summary': {
     en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
-    si: 'මේ උපාංගය තමයි බල්බ් එකක් විදිහට වැඩකරන්නෙ. පරිපථයේ තියෙන LED දෙක මාරුවෙන් මාරුවට දැල්වෙන එකෙන් තමයි ආලෝක රටාව නිර්මාණය වෙන්නෙ. ',
+    si: 'LED එක ගැන නම් අමුතුවෙන් කියන්න ඕනෙ නෑනෙ!',
   },
   'circuit.multivibrator.part.led.description1': {
     en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
-    si: 'LED දෙකේම (+) අග්‍රය R2 රෙසිස්ටර් හරහා පරිපථයේ (+) විදුලියත් එක්ක සෑමවිටම සම්බන්ධ වෙලා තියෙන්නෙ.',
+    si: 'මෙයාගේ (+) අග්‍රය R2 රෙසිස්ටර් එක හරහා කෙලින්ම පරිපථයේ (+) විදුලි සැපයුමත් එක්ක සම්බන්ධ කරලා තියෙන්නෙ.',
   },
   'circuit.multivibrator.part.led.description2': {
     en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
-    si: 'හැබැයි (-) අග්‍රය පරිපථයේ (-) විදුලියත් එක්ක කෙලින්ම සම්බන්ධ වෙන්නේ LED එකට අදාල ට්‍රාන්සිස්ටර් එක හරහා නිසා බල්බය දැල්වෙන්නේ ඒ ට්‍රාන්සිස්ටර් එක ක්‍රියාත්මක උනොත් විතරයි.',
+    si: 'හැබැයි (-) අග්‍රය පරිපථයේ (-) විදුලි සැපයුමත් එක්ක කෙලින්ම සම්බන්ධ වෙන්නේ නෑ.  ඒක සම්බන්ධ වෙන්නේ LED එක පැත්තේ තියන ට්‍රාන්සිස්ටර් එකට.',
+  },
+  'circuit.multivibrator.part.led.description3': {
+    en: 'A light-emitting diode glows when current flows through it — but only in one direction.',
+    si: 'ඒ ට්‍රාන්සිස්ටර් එක තමයි තීරණය කරන්නෙ, කොයි වෙලාවටද විදුලි සැපයුම සම්පූර්ණ කරලා LED එක පත්තු කරන්නේ කියලා.',
   },
   // Shown in the warning box on the LED write-up — see part-details.component.html.
   'circuit.multivibrator.part.led.warning': {
@@ -50,7 +54,15 @@ export const multivibratorPartTranslations = {
   // --- 330 ohm resistors (LED current limiting) ---
   'circuit.multivibrator.part.r330.summary': {
     en: 'These sit in series with the LEDs and limit how much current reaches them.',
-    si: 'මේවා LED එක්ක ශ්‍රේණිගතව සම්බන්ධ වෙලා ඒවාට යන ධාරාව සීමා කරනවා.',
+    si: 'මේ රෙසිස්ටර් එකෙන් තමයි එයාට උඩින් තියන LED එකට දැල්වෙන්න අවශ්‍ය ප්‍රමාණයට ධාරාව සීමා කරලා දෙන්නේ. එහෙම කලේ නැතිනම් 5v සැපයුමක් කෙලින්ම LED එකට ලැබුනම, ඒක පිච්චිලා යනවා.',
+  },
+  'circuit.multivibrator.part.r330.summary2': {
+    en: 'These sit in series with the LEDs and limit how much current reaches them.',
+    si: 'ඔයා මෙතනට පාවිච්චි කරන්න ඕනෙ රෙසිස්ටර් එකේ අගය එයාට උඩින් තියන LED එකේ පාට අනුව වෙනස් වෙනවා. ඒකට පහල තියෙන රූපසටහන බලන්න.',
+  },
+  'circuit.multivibrator.part.r330.summary3': {
+    en: 'These sit in series with the LEDs and limit how much current reaches them.',
+    si: 'සාමාන්න්‍යයෙන් 200ohms වගේ රෙසිස්ටර් එකක් ඕනේම LED එකකට ගැලපෙනවා. හැබැයි පාට දෙකක LED පාවිච්චි කරනකොට එක LED එකක් අනිත් එකට වඩා ගොඩාක් වැඩි එළියකින් පත්තු වෙන්න පුළුවන්. එතකොට සර්කිට් එකේ රටාව ටිකක් සමබර නෑ වගේ පේනවා.',
   },
   'circuit.multivibrator.part.r330.why': {
     en: 'Without them the LEDs would pull far too much current and burn out.',
@@ -59,7 +71,7 @@ export const multivibratorPartTranslations = {
   // Shared by both resistor blocks — a resistor has no polarity, so the copy is the same.
   'circuit.multivibrator.part.resistor.placement': {
     en: 'Bend both legs down and sit the body flat on the board. A resistor has no polarity, so either way round works.',
-    si: 'කකුල් දෙකම පහළට නවලා, උපාංගය බෝඩ් එකට තදින් තියෙන්න සවි කරන්න. රෙසිස්ටරයට (+) (−) පැති නෑ, ඒ නිසා ඕනෑම පැත්තකට දාන්න පුළුවන්.',
+    si: 'මෙන්න මේ විදිහට තමයි රෙසිස්ටරර් එකක් සර්කිට් එකට සවි කරගන්නෙ. රෙසිස්ටරයට (+) (−) පැති නෑ, ඒ නිසා ඕනෑම පැත්තකට දාන්න පුළුවන්.',
   },
 
   // --- 47uF capacitors (timing) ---
@@ -101,11 +113,11 @@ export const multivibratorPartTranslations = {
   // --- USB-C power input ---
   'circuit.multivibrator.part.usbC.summary': {
     en: 'The USB-C connector is where the 5V supply comes in.',
-    si: 'USB-C කනෙක්ටරය හරහා තමයි 5V විදුලිය ලැබෙන්නේ.',
+    si: 'USB-C කනෙක්ටරය හරහා තමයි සර්කිට් එක ක්‍රියාත්මක කරන්න ඕනෙ විදුලිය ලබා ගන්නෙ.',
   },
   'circuit.multivibrator.part.usbC.source': {
     en: 'Any phone charger or power bank will do.',
-    si: 'ඕනෑම ෆෝන් චාජරයක් හරි පවර් බෑන්ක් එකක් හරි ගැලපෙනවා.',
+    si: 'ඕනෑම ෆෝන් චාජරයක් හරි පවර් බෑන්ක් එකකින් උනත් මෙයාව ක්‍රියාත්මක කරන්න පුළුවන්.',
   },
   'circuit.multivibrator.part.usbC.data': {
     en: 'It only powers the board — no data travels through it.',

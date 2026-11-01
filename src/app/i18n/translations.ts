@@ -7,6 +7,7 @@ import { contactTranslations } from '../pages/home/sections/contact-us-section/c
 import { footerTranslations } from '../app.i18n';
 import { multivibratorTranslations } from '../pages/circuit/multivibrator/multivibrator.i18n';
 import { multivibratorPartTranslations } from '../pages/circuit/multivibrator/part-details/multivibrator.parts.i18n';
+import { sharedTranslations } from '../../shared/i18n/shared-translations.i18n';
 
 export { LANGS } from './types';
 export type { Lang } from './types';
@@ -23,6 +24,7 @@ export type { Lang } from './types';
  * native speaker review it before publishing.
  */
 export const TRANSLATIONS: TranslationFragment = {
+  ...sharedTranslations,
   ...navTranslations,
   ...heroTranslations,
   ...aboutTranslations,

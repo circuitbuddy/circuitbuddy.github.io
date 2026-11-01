@@ -3,8 +3,8 @@ import { TranslationFragment } from '../../../../i18n/types';
 export const productsTranslations = {
   'products.title': { en: 'Circuits List', si: 'පරිපථ ලැයිස්තුව' },
   'products.subtitle': {
-    en: 'Each kit includes the PCB, all components, and a printed quick-start card.',
-    si: 'හොඳම තත්ත්වයෙන් නිෂ්පාදිත සර්කිට් බෝඩ් එකක් සමඟ, ඒකට අවශ්‍ය උපාංග සියල්ලම ඔබට මිලදී ගන්න පුළුවන්. සෑම උපාංගයකම ක්‍රියාකාරීත්වය අපි තහවුරු කරලයි ඔයාලට එවන්නෙ.',
+    en: 'Each kit includes the Premium quality PCB, and all components required to build it yourself. and a printed quick-start card.',
+    si: 'සෑම සර්කිට් කට්ටලයක් එක්කම, හොඳම තත්ත්වයෙන් නිෂ්පාදිත සර්කිට් බෝඩ් එකක් සහ, ඒකට අවශ්‍ය උපාංග සියල්ලම ඇතුලත් කර ඇත.',
   },
   'products.pcbNo': { en: 'PCB No:', si: 'PCB No:' },
   'products.buy': { en: 'Buy kit', si: 'වැඩිදුර කියවන්න' },
