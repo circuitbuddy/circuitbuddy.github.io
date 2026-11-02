@@ -61,7 +61,7 @@
       ></p>
 
       <p
-        class="mt-4 text-base text-cream/80 leading-relaxed max-w-2xl"
+        class="mt-4 text-lg text-cream/80 leading-relaxed max-w-2xl"
         [innerHTML]="'circuit.multivibrator.p2' | t"
       ></p>
 
@@ -104,7 +104,9 @@
                   d="M440-280h80v-240h-80v240Zm68.5-331.5Q520-623 520-640t-11.5-28.5Q497-680 480-680t-28.5 11.5Q440-657 440-640t11.5 28.5Q463-600 480-600t28.5-11.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
                 />
               </svg>
-              එක් එක් උපාංගය උඩ ටච් කරලා තවත් විස්තර දැනගන්න පුළුවන්!
+              <span class="text-base text-cream">
+                {{ 'shared.touchOnComponent' | t }}
+              </span>
             </div>
           }
         </p>
@@ -151,41 +153,30 @@
 
       <section class="mt-12">
         <h2 class="font-display font-800 text-2xl md:text-3xl text-cream">
-          {{ 'circuit.multivibrator.bom.title' | t }}
+          {{ 'shared.shortDescription' | t }}
         </h2>
 
         <div class="mt-0">
           <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            මේ සර්කිට් එක දිහා හොඳට බැලුවොත් ඔයාලට විශේෂ දෙයක් බලාගන්න පුළුවන්. ඒ තමයි මේ සර්කිට් එක
-            හරියටම මැද්දෙන් සමාන කොටස් දෙකකට බෙදන්න පුළුවන්.
+            {{ 'circuit.multivibrator.description.p1' | t }}
           </p>
           <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            මෙතන ප්‍රධානම කෙනා තමයි ට්‍රාන්සිස්ටර් එක. එයා තමයි ස්වයක්‍රීය ස්වීච් එකක් විදිහට
-            ක්‍රියාත්මක වෙලා එයාට අයිති LED එක On/Off කරන්නෙ.
+            {{ 'circuit.multivibrator.description.p2' | t }}
           </p>
           <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            හැබැයි මේ දෙපැත්තම බලාගෙන ඉන්නෙ තමන්ට චාන්ස් එකක් ආපු ගමන් අනිත් කෙනාව Off කරන්න. ඒ
-            විදිහට ක්‍රියාත්මක වෙන්න තමයි මේ සර්කිට් එක ඩිසයින් කරලා තියෙන්නෙ.
+            {{ 'circuit.multivibrator.description.p3' | t }}
           </p>
           <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            ඉතින් එක්කෙනෙක්ට චාන්ස් එකක් ආව ගමන් එයා කරන්නේ තමන්ගේ LED එක on කරලා අනිත් කෙනාව Off
-            කරන එක.
+            {{ 'circuit.multivibrator.description.p4' | t }}
           </p>
           <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            හැබැයි එහෙමයි කියලා අනිත් කෙනා නිකං ඉන්නෙත් නෑ, එයා Off උනාට පස්සෙ ටික වෙලාවක් බලාගෙන
-            ඉඳලා, වෙලව ආව ගමන් අනික් පැත්තට Return එක දෙනවා.
+            {{ 'circuit.multivibrator.description.p5' | t }}
           </p>
           <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            මේ වැඩේ වෙන්න කොයිතරම් වෙලාවක් ගන්නවද කියලා තීරණය වෙන්නේ එයාට අයිති කැපෑසිටර් එකෙන් සහ ඒ
-            කැපෑසිටර් එකට සම්බන්ධ කරලා තියෙන රෙසිස්ටර් එකෙන්.
+            {{ 'circuit.multivibrator.description.p6' | t }}
           </p>
           <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            කැපෑසිටි එක වැඩි වෙනකොට වගේම රෙසිස්ටන්ස් එක වැඩි වෙනකොටත් මේ කාලය වැඩි වෙනවා.
-          </p>
-          <p class="mt-4 text-lg text-cream/90 leading-relaxed max-w-2xl">
-            ඉතින් ඔය විදිහට මේ සර්කිට් එකට විදුලිය ලැබිලා තියෙනකන් මේ දෙපැත්ත තරඟෙට තමන්ගේ LED එක On
-            කරගෙන අනික් කෙනාව Off කරනවා. ඔය විදිහට තමයි අපිට මාරුවෙන් මාරුවට දැල්වෙන රටාවක් බලාගන්න
-            පුළුවන් වෙන්නේ.
+            {{ 'circuit.multivibrator.description.p7' | t }}
           </p>
         </div>
       </section>
