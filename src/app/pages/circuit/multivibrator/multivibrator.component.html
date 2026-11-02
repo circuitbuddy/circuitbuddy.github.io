@@ -111,7 +111,7 @@
       </div>
 
       <!-- ============ BILL OF MATERIALS ============ -->
-      <section class="mt-12">
+      <!-- <section class="mt-12">
         <h2 class="font-display font-800 text-2xl md:text-3xl text-cream">
           {{ 'circuit.multivibrator.bom.title' | t }}
         </h2>
@@ -126,8 +126,11 @@
                 <th scope="col" class="px-3 py-2 font-semibold">
                   {{ 'circuit.multivibrator.bom.designators' | t }}
                 </th>
-                <th scope="col" class="px-3 py-2 font-semibold" colspan="2">
+                <th scope="col" class="px-3 py-2 font-semibold">
                   {{ 'circuit.multivibrator.bom.part' | t }}
+                </th>
+                <th scope="col" class="px-3 py-2 font-semibold text-right">
+                  {{ 'circuit.multivibrator.bom.quantity' | t }}
                 </th>
               </tr>
             </thead>
@@ -138,12 +141,13 @@
                     {{ row.label.join(', ') }}
                   </td>
                   <td scope="row" class="px-3 py-2 text-left">{{ row.name }}</td>
+                  <td class="px-3 py-2 text-right font-semibold tabular-nums">{{ row.count }}</td>
                 </tr>
               }
             </tbody>
           </table>
         </div>
-      </section>
+      </section> -->
 
       <section class="mt-12">
         <h2 class="font-display font-800 text-2xl md:text-3xl text-cream">

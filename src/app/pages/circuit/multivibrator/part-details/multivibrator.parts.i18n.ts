@@ -58,7 +58,7 @@ export const multivibratorPartTranslations = {
   },
   'circuit.multivibrator.part.r330.summary2': {
     en: 'These sit in series with the LEDs and limit how much current reaches them.',
-    si: 'ඔයා මෙතනට පාවිච්චි කරන්න ඕනෙ රෙසිස්ටර් එකේ අගය එයාට උඩින් තියන LED එකේ පාට අනුව වෙනස් වෙනවා. ඒකට පහල තියෙන රූපසටහන බලන්න.',
+    si: 'ඔයා මෙතනට පාවිච්චි කරන්න ඕනෙ රෙසිස්ටර් එකේ අගය එයාට උඩින් තියන LED එකේ පාට අනුව වෙනස් වෙනවා. ඒකට මේ රූපසටහන බලන්න.',
   },
   'circuit.multivibrator.part.r330.summary3': {
     en: 'These sit in series with the LEDs and limit how much current reaches them.',

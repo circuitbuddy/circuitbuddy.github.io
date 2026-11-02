@@ -13,6 +13,8 @@ interface PcbPartBase {
   name: string;
   /** Optional tooltip text; falls back to `name`. */
   label?: string | null;
+  /** Name for this part in the bill of materials. */
+  bomLabel: string;
   /** Photo of the real-world part, shown when the marker is selected. */
   imageUrl: string;
   /**
